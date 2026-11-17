@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stack Labs — Software que la industria ya puede usar</title>
-<meta name="description" content="Stack Labs · Estudio de software aplicado a industria. Cuatro líneas de capacidad: comunicación con IA, automatización operativa, inteligencia comercial y monitoreo geoespacial. Listas para piloto.">
+<title>Stack Labs — Desarrollo Full Stack nivel industrial</title>
+<meta name="description" content="Stack Labs · Desarrollo Full Stack nivel industrial. Cuatro líneas de capacidad: comunicación con IA, automatización operativa, inteligencia comercial y monitoreo geoespacial con satélites NASA. Software ya construido y probado.">
 <meta name="author" content="Juan Carlos Pérez Martínez">
-<meta property="og:title" content="Stack Labs — Software que la industria ya puede usar">
-<meta property="og:description" content="Cuatro líneas de capacidad construidas y validadas, listas para piloto con clientes reales.">
+<meta property="og:title" content="Stack Labs — Desarrollo Full Stack nivel industrial">
+<meta property="og:description" content="Cuatro líneas de capacidad construidas y validadas. Software que la industria ya puede usar.">
 <meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -64,26 +64,27 @@
     position:sticky;top:0;z-index:100;
     background:rgba(10,14,26,.85);
     backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--border);padding:14px 0;
+    border-bottom:1px solid var(--border);padding:12px 0;
   }
   .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;}
-  .brand{
-    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:16px;
-    letter-spacing:-0.01em;display:flex;align-items:center;gap:9px;
+  .brand{display:flex;flex-direction:column;line-height:1.15;}
+  .brand-name{
+    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;
+    letter-spacing:-0.01em;display:flex;align-items:center;gap:8px;
   }
   .brand-dot{
     width:8px;height:8px;border-radius:50%;background:var(--success);
-    box-shadow:0 0 12px var(--success);
-  }
-  .brand-name{
-    background:linear-gradient(135deg,#ffffff 0%,#a8b2c6 100%);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    background-clip:text;font-weight:700;
+    box-shadow:0 0 12px var(--success);flex-shrink:0;
   }
   .brand-name .labs{
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
     -webkit-background-clip:text;-webkit-text-fill-color:transparent;
     background-clip:text;
+  }
+  .brand-slogan{
+    font-size:10.5px;font-weight:600;color:var(--text-muted);
+    text-transform:uppercase;letter-spacing:.08em;margin-top:2px;
+    padding-left:16px;
   }
   .topbar-cta{
     display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
@@ -98,7 +99,7 @@
   }
 
   /* ── HERO ── */
-  .hero{padding:90px 0 70px;text-align:center;}
+  .hero{padding:80px 0 60px;text-align:center;}
   .hero-tag{
     display:inline-flex;align-items:center;gap:8px;padding:6px 14px;
     background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);
@@ -106,7 +107,7 @@
     margin-bottom:26px;text-transform:uppercase;letter-spacing:.08em;
   }
   .hero h1{
-    font-size:clamp(34px,6vw,62px);font-weight:700;line-height:1.05;
+    font-size:clamp(34px,6vw,58px);font-weight:700;line-height:1.08;
     margin-bottom:24px;
     background:linear-gradient(180deg,#ffffff 0%,#a8b2c6 100%);
     -webkit-background-clip:text;-webkit-text-fill-color:transparent;
@@ -216,6 +217,10 @@
     background:rgba(77,171,247,.12);color:var(--info);
     border:1px solid rgba(77,171,247,.25);
   }
+  .pill-dev{
+    background:rgba(123,97,255,.12);color:#a58bff;
+    border:1px solid rgba(123,97,255,.25);
+  }
   .pill-val{
     background:rgba(255,181,71,.12);color:var(--warning);
     border:1px solid rgba(255,181,71,.25);
@@ -262,28 +267,47 @@
   .collab-card h3{font-size:18px;margin-bottom:10px;}
   .collab-card p{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
 
-  /* ── CTA FINAL ── */
-  .cta{
-    text-align:center;padding:64px 28px;
+  /* ── CONTACTO ── */
+  .contact{
+    padding:60px 28px;
     background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(123,97,255,.08));
     border:1px solid rgba(0,212,255,.2);border-radius:var(--radius);
     position:relative;overflow:hidden;
+    text-align:center;
   }
-  .cta::before{
+  .contact::before{
     content:'';position:absolute;top:-50%;left:50%;
     transform:translateX(-50%);width:400px;height:400px;
     background:radial-gradient(circle,rgba(0,212,255,.2) 0%,transparent 70%);
     filter:blur(60px);pointer-events:none;
   }
-  .cta h2{
-    font-size:clamp(24px,3.5vw,34px);margin-bottom:14px;position:relative;
+  .contact-photo-wrap{
+    width:130px;height:130px;margin:0 auto 22px;
+    border-radius:50%;padding:3px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));
+    position:relative;z-index:1;
   }
-  .cta p{
-    color:var(--text-muted);max-width:580px;margin:0 auto 28px;
-    font-size:15px;position:relative;
+  .contact-photo{
+    width:100%;height:100%;border-radius:50%;
+    object-fit:cover;display:block;
+    background:var(--bg-2);
   }
-  .cta-actions{
-    display:flex;gap:12px;justify-content:center;flex-wrap:wrap;position:relative;
+  .contact-name{
+    font-size:22px;font-weight:700;margin-bottom:6px;
+    position:relative;z-index:1;
+  }
+  .contact-role{
+    font-size:14px;color:var(--accent);font-weight:600;
+    margin-bottom:10px;position:relative;z-index:1;
+    text-transform:uppercase;letter-spacing:.08em;
+  }
+  .contact-loc{
+    font-size:13px;color:var(--text-muted);
+    margin-bottom:26px;position:relative;z-index:1;
+  }
+  .contact-actions{
+    display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
+    position:relative;z-index:1;
   }
 
   /* ── FOOTER ── */
@@ -295,12 +319,17 @@
   .footer strong{color:var(--text-muted);font-weight:600;}
   .footer .brand-mini{
     font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;
-    margin-bottom:6px;
+    margin-bottom:4px;
   }
   .footer .brand-mini .labs{
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
     -webkit-background-clip:text;-webkit-text-fill-color:transparent;
     background-clip:text;
+  }
+  .footer .slogan-mini{
+    font-size:10.5px;color:var(--text-dim);
+    text-transform:uppercase;letter-spacing:.08em;
+    margin-bottom:14px;
   }
 
   /* ── RESPONSIVE ── */
@@ -311,10 +340,13 @@
     .section{margin-bottom:60px;}
     .hero-actions{flex-direction:column;align-items:stretch;}
     .hero-actions .btn{justify-content:center;}
+    .brand-slogan{font-size:9.5px;padding-left:16px;}
   }
   @media (max-width:480px){
     .grid{grid-template-columns:1fr;}
     .topbar-cta span.arrow{display:none;}
+    .brand-name{font-size:15px;}
+    .brand-slogan{font-size:9px;}
   }
 </style>
 </head>
@@ -326,22 +358,25 @@
 <div class="topbar">
   <div class="wrap topbar-inner">
     <div class="brand">
-      <span class="brand-dot"></span>
-      <span class="brand-name">Stack <span class="labs">Labs</span></span>
+      <div class="brand-name">
+        <span class="brand-dot"></span>
+        Stack <span class="labs">Labs</span>
+      </div>
+      <div class="brand-slogan">Desarrollo Full Stack nivel industrial</div>
     </div>
     <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20Stack%20Labs%20y%20quiero%20conversar." target="_blank" rel="noopener" class="topbar-cta">
-      Hablemos <span class="arrow">→</span>
+      Contacto <span class="arrow">→</span>
     </a>
   </div>
 </div>
 
 <!-- HERO -->
 <header class="wrap hero">
-  <div class="hero-tag">● Stack Labs · Socio técnico, no empleado</div>
-  <h1>Software que la industria<br><span class="highlight">ya puede usar.</span></h1>
+  <div class="hero-tag">● Stack Labs · Ingeniería de software aplicada</div>
+  <h1>Desarrollo Full Stack<br><span class="highlight">nivel industrial.</span></h1>
   <p>
-    Cuatro líneas de capacidad construidas y validadas, listas para piloto con clientes reales.
-    Cada una resuelve un dolor medible: comunicación, automatización, prospección y riesgo operativo.
+    Cuatro líneas de capacidad construidas y validadas. Cada una resuelve un dolor medible:
+    comunicación, automatización, prospección y monitoreo geoespacial con datos satelitales.
   </p>
   <div class="hero-actions">
     <a href="#lineas" class="btn btn-primary">Ver capacidades ↓</a>
@@ -357,16 +392,16 @@
       <div class="stat-lbl">En producción</div>
     </div>
     <div class="stat">
-      <div class="stat-num">9</div>
-      <div class="stat-lbl">PoC validados</div>
+      <div class="stat-num">8</div>
+      <div class="stat-lbl">Prototipos funcionales</div>
     </div>
     <div class="stat">
-      <div class="stat-num">1</div>
+      <div class="stat-num">2</div>
       <div class="stat-lbl">En validación</div>
     </div>
     <div class="stat">
-      <div class="stat-num">15d</div>
-      <div class="stat-lbl">Para piloto</div>
+      <div class="stat-num">4</div>
+      <div class="stat-lbl">Líneas de capacidad</div>
     </div>
   </div>
 </div>
@@ -378,7 +413,7 @@
     <h2 class="section-title">Comunicación multilingüe con IA</h2>
     <p class="section-desc">
       Elimina la barrera del idioma en planta, en piso y en reuniones técnicas.
-      Traducción en tiempo real, asistentes manos libres y salas cerradas de capacitación.
+      Traducción en tiempo real y asistentes de voz manos libres.
     </p>
   </div>
   <div class="grid">
@@ -391,10 +426,10 @@
           <span class="pill pill-prod">En producción</span>
         </div>
       </div>
-      <p class="card-desc">Traductor de voz en tiempo real con IA. Escucha, traduce y muestra hasta 24 idiomas en pantalla.</p>
+      <p class="card-desc">Traductor de voz en tiempo real con IA. Escucha, traduce y muestra hasta 24 idiomas en pantalla. Full stack con API serverless y credenciales resguardadas.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Capacitación y seguridad en el idioma de cada operador. Reuniones con proveedores extranjeros sin intérprete.
+        Capacitación y seguridad en el idioma de cada operador. Reuniones con proveedores extranjeros sin intérprete. Onboarding acelerado en planta.
       </div>
       <a href="https://claude.ai/artifact/DF76CVE1e2YqqQ1k2AsQcd" target="_blank" rel="noopener" class="card-link">Probar app →</a>
     </article>
@@ -404,31 +439,15 @@
         <div class="card-icon">🤖</div>
         <div class="card-title-wrap">
           <h3 class="card-title">Stark Industries AI</h3>
-          <span class="pill pill-poc">PoC</span>
+          <span class="pill pill-dev">En desarrollo</span>
         </div>
       </div>
-      <p class="card-desc">Asistente de voz conversacional tipo JARVIS. Interfaz manos libres para operación en piso.</p>
+      <p class="card-desc">Asistente de voz conversacional estilo JARVIS (Iron Man). Interfaz manos libres para operación en piso. API de IA pendiente de conectar — arquitectura lista.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Operadores que consultan información sin soltar herramienta ni maquinaria.
+        Operadores que consultan información, protocolos o historial sin soltar herramienta ni maquinaria. Asistente contextual para piso de producción.
       </div>
-      <a href="https://stark-industries-tau.vercel.app" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🎥</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Revelarte Live Studio</h3>
-          <span class="pill pill-poc">PoC</span>
-        </div>
-      </div>
-      <p class="card-desc">Sala de videoconferencia y streaming privada, sin exponer datos a plataformas públicas.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Capacitación interna y protocolos EHS sin riesgo de filtración a Zoom, Teams o Meet.
-      </div>
-      <a href="https://revelarte-live-studio.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
+      <a href="https://stark-industries-tau.vercel.app" target="_blank" rel="noopener" class="card-link">Ver prototipo →</a>
     </article>
 
   </div>
@@ -454,10 +473,10 @@
           <span class="pill pill-prod">En producción</span>
         </div>
       </div>
-      <p class="card-desc">Suite de automatización con OCR de sistemas legados, calculadoras, plantillas, bitácoras auditables y gamificación para adopción real.</p>
+      <p class="card-desc">Suite de automatización con OCR de sistemas legados, calculadoras, plantillas de escalamiento, bitácoras auditables y gamificación para adopción real del usuario.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Reducir AHT, eliminar errores de captura y generar bitácoras con datos enmascarados para auditoría.
+        Reducir AHT, eliminar errores de captura, generar bitácoras auditables con datos enmascarados. Cero dependencia de nube, ideal para sectores regulados.
       </div>
       <a href="https://dcc-suite-enterprise-eskn.vercel.app/" target="_blank" rel="noopener" class="card-link">Abrir suite →</a>
     </article>
@@ -467,13 +486,13 @@
         <div class="card-icon">📡</div>
         <div class="card-title-wrap">
           <h3 class="card-title">ShadowPost Pro Engine</h3>
-          <span class="pill pill-poc">PoC</span>
+          <span class="pill pill-poc">Prototipo</span>
         </div>
       </div>
-      <p class="card-desc">SaaS de automatización de publicación con lógica anti-detección y módulo de pagos integrado.</p>
+      <p class="card-desc">SaaS de automatización de publicación con lógica anti-detección y módulo de pagos integrado. Full stack completo.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Comunicación interna, difusión de protocolos y campañas EHS automatizadas.
+        Comunicación interna, difusión de protocolos y campañas EHS automatizadas sin intervención manual.
       </div>
       <a href="https://shadowpost-engine-user-js.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
     </article>
@@ -487,7 +506,7 @@
     <span class="section-eyebrow">Línea 03</span>
     <h2 class="section-title">Inteligencia comercial y de talento</h2>
     <p class="section-desc">
-      Seis motores para detectar oportunidades, calificar talento y mapear territorios.
+      Cinco motores para detectar oportunidades, calificar talento y mapear territorios.
       Menos prospección manual, más pipeline predecible.
     </p>
   </div>
@@ -498,13 +517,13 @@
         <div class="card-icon">🏢</div>
         <div class="card-title-wrap">
           <h3 class="card-title">Oracle B2B Shield</h3>
-          <span class="pill pill-poc">PoC</span>
+          <span class="pill pill-poc">Prototipo</span>
         </div>
       </div>
-      <p class="card-desc">Detección predictiva de licitaciones y demanda B2B en parques industriales.</p>
+      <p class="card-desc">Motor de detección predictiva de licitaciones y demanda B2B en parques industriales.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Pipeline predecible con leads calificados, no prospección a ciegas.
+        Pipeline predecible con leads calificados. Menos prospección a ciegas, más cierre con oportunidad detectada por datos.
       </div>
       <a href="https://oracle-b2-b-commercial-shield.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
     </article>
@@ -514,13 +533,13 @@
         <div class="card-icon">🎯</div>
         <div class="card-title-wrap">
           <h3 class="card-title">Ecosistema de Prospección</h3>
-          <span class="pill pill-poc">PoC</span>
+          <span class="pill pill-poc">Prototipo</span>
         </div>
       </div>
-      <p class="card-desc">Enriquecimiento de leads y automatización outbound con IA.</p>
+      <p class="card-desc">Plataforma de enriquecimiento de leads y automatización outbound con IA.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Reducir costo por lead y aumentar tasa de conversión comercial.
+        Reducir costo por lead y aumentar tasa de conversión comercial con inteligencia de datos.
       </div>
       <a href="https://ecosistema-inteligente-de-prospecci.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
     </article>
@@ -530,13 +549,13 @@
         <div class="card-icon">🧠</div>
         <div class="card-title-wrap">
           <h3 class="card-title">MindShield AI Cognitive</h3>
-          <span class="pill pill-poc">PoC</span>
+          <span class="pill pill-poc">Prototipo</span>
         </div>
       </div>
-      <p class="card-desc">Evaluación cognitiva y selección de talento técnico con análisis visual por IA.</p>
+      <p class="card-desc">Plataforma de evaluación cognitiva y selección de talento técnico con análisis visual por IA.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Reducir rotación temprana y costo de contratación fallida.
+        Reducir rotación temprana y costo de contratación fallida. Detectar el candidato correcto antes de contratar.
       </div>
       <a href="https://mindshield-ai-talent-cognitive-proj.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
     </article>
@@ -546,13 +565,13 @@
         <div class="card-icon">🗺️</div>
         <div class="card-title-wrap">
           <h3 class="card-title">Target Zones AI Pro</h3>
-          <span class="pill pill-poc">PoC</span>
+          <span class="pill pill-poc">Prototipo</span>
         </div>
       </div>
-      <p class="card-desc">Mapeo geoespacial interactivo de cobertura y zonas de venta.</p>
+      <p class="card-desc">Herramienta geoespacial interactiva para mapeo de cobertura y zonas de venta.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Optimizar territorios comerciales y cobertura de servicio en campo.
+        Optimizar territorios comerciales, cobertura de servicio en campo y decisiones de expansión territorial.
       </div>
       <a href="https://zeus-auto-post-pro-gemini-core-v1-0.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
     </article>
@@ -562,31 +581,15 @@
         <div class="card-icon">✍️</div>
         <div class="card-title-wrap">
           <h3 class="card-title">Vulcan Neuro Copy</h3>
-          <span class="pill pill-poc">PoC</span>
+          <span class="pill pill-poc">Prototipo</span>
         </div>
       </div>
-      <p class="card-desc">Generación dinámica de copy, propuestas técnicas y contenido comercial con IA.</p>
+      <p class="card-desc">Motor dinámico de generación de copy, propuestas técnicas y contenido comercial con IA.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Propuestas técnicas automatizadas sin depender de equipo de marketing.
+        Propuestas técnicas y comerciales automatizadas sin depender de un equipo de marketing interno.
       </div>
       <a href="https://vulcan-neuro-copy-dynamic-engine.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🔎</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Gemini Pérez Investigación</h3>
-          <span class="pill pill-poc">PoC</span>
-        </div>
-      </div>
-      <p class="card-desc">Research asistido con IA y generación de reportes ejecutivos.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Due diligence rápida de proveedores e inteligencia de mercado en horas, no semanas.
-      </div>
-      <a href="https://gemini-perez-investigacion.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
     </article>
 
   </div>
@@ -595,11 +598,11 @@
 <!-- ═══ LÍNEA 04 ═══ -->
 <section class="wrap section">
   <div class="section-head">
-    <span class="section-eyebrow">Línea 04 · En validación</span>
-    <h2 class="section-title">Monitoreo ambiental y geoespacial</h2>
+    <span class="section-eyebrow">Línea 04 · Monitoreo geoespacial</span>
+    <h2 class="section-title">Inteligencia satelital y riesgo ambiental</h2>
     <p class="section-desc">
-      Motor de inteligencia operativa alimentado por APIs públicas de la NASA: EONET, Earthdata y Giovanni.
-      Riesgo sísmico, cumplimiento ambiental y mantenimiento predictivo — sin costo de licencia de datos.
+      Motor de inteligencia operativa alimentado por APIs públicas de la NASA y otros organismos satelitales:
+      EONET, Earthdata y Giovanni. Riesgo sísmico, cumplimiento ambiental y mantenimiento predictivo — sin costo de licencia de datos.
     </p>
   </div>
   <div class="grid">
@@ -608,14 +611,30 @@
       <div class="card-head">
         <div class="card-icon">🛰️</div>
         <div class="card-title-wrap">
+          <h3 class="card-title">Gemini Pérez · Mapa Satelital NASA</h3>
+          <span class="pill pill-poc">Prototipo</span>
+        </div>
+      </div>
+      <p class="card-desc">Mapa interactivo conectado a APIs públicas de la NASA y otros satélites: sismos, incendios, temperatura, calidad de aire y eventos naturales en tiempo real.</p>
+      <div class="card-use">
+        <strong>Para qué sirve en industria</strong>
+        Alerta temprana de riesgo sísmico y ambiental · cumplimiento auditable · decisiones de expansión y logística con datos satelitales reales.
+      </div>
+      <a href="https://gemini-perez-investigacion.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver mapa en vivo →</a>
+    </article>
+
+    <article class="card">
+      <div class="card-head">
+        <div class="card-icon">🌍</div>
+        <div class="card-title-wrap">
           <h3 class="card-title">Plataforma de Riesgo Geoespacial</h3>
           <span class="pill pill-val">En validación</span>
         </div>
       </div>
-      <p class="card-desc">Dashboard operativo con datos satelitales públicos: sismos, incendios, temperatura, calidad de aire y eventos naturales en tiempo real.</p>
+      <p class="card-desc">Dashboard operativo corporativo: capas de riesgo, cumplimiento y monitoreo geoespacial con datos satelitales de la NASA.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Alerta temprana de riesgo sísmico y ambiental · cumplimiento auditable · decisiones de expansión y logística con datos reales.
+        Monitoreo continuo de infraestructura crítica, cumplimiento ambiental y reportes auditables para operaciones en zonas de riesgo.
       </div>
       <a href="#" class="card-link disabled">Disponible como primer piloto →</a>
     </article>
@@ -631,7 +650,7 @@
       <p class="card-desc">Capacidad técnica para conectar sensores físicos (temperatura, vibración, calidad de aire) al mismo dashboard geoespacial.</p>
       <div class="card-use">
         <strong>Para qué sirve en industria</strong>
-        Mantenimiento predictivo y monitoreo de infraestructura crítica con alertas operativas en tiempo real.
+        Mantenimiento predictivo y monitoreo de infraestructura crítica con alertas operativas en tiempo real sobre el mapa satelital.
       </div>
       <a href="#" class="card-link disabled">Disponible como primer piloto →</a>
     </article>
@@ -645,7 +664,7 @@
     <span class="section-eyebrow">Cómo trabajamos</span>
     <h2 class="section-title">Modelo de colaboración</h2>
     <p class="section-desc">
-      Tú aportas cartera, diagnóstico y relación comercial. Yo aporto desarrollo, piloto, implementación y soporte.
+      Tú aportas cartera, diagnóstico y relación comercial. Stack Labs aporta desarrollo, prototipo, implementación y soporte.
       Tres modelos para acomodarlo a cómo trabajas con tus clientes.
     </p>
   </div>
@@ -654,13 +673,13 @@
     <div class="collab-card">
       <div class="collab-num">MODELO 01</div>
       <h3>50 / 50</h3>
-      <p>Nos repartimos la implementación por partes iguales. Ideal cuando el cliente final es de alto valor y quieres compartir riesgo y recompensa.</p>
+      <p>Repartimos la implementación por partes iguales. Ideal cuando el cliente final es de alto valor y quieres compartir riesgo y recompensa.</p>
     </div>
 
     <div class="collab-card">
       <div class="collab-num">MODELO 02</div>
       <h3>Precio de mayoreo</h3>
-      <p>Yo te doy un precio fijo por proyecto, tú lo revendes al cliente con tu margen. Ideal para proyectos claros y ciclos cortos.</p>
+      <p>Stack Labs entrega precio fijo por proyecto, tú lo revendes al cliente con tu margen. Ideal para proyectos claros y ciclos cortos.</p>
     </div>
 
     <div class="collab-card">
@@ -672,17 +691,22 @@
   </div>
 </section>
 
-<!-- ═══ CTA FINAL ═══ -->
-<section class="wrap">
-  <div class="cta">
-    <h2>Un cliente. Un piloto. 15 días.</h2>
-    <p>
-      Elige un cliente de tu cartera con un dolor claro. Te entrego un prototipo funcional en 15 días hábiles.
-      Si funciona, escalamos. Si no, no perdimos nada.
-    </p>
-    <div class="cta-actions">
-      <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20revis%C3%A9%20Stack%20Labs%20y%20quiero%20arrancar%20el%20piloto." target="_blank" rel="noopener" class="btn btn-primary">💬 Agendar por WhatsApp</a>
-      <a href="mailto:celides10@gmail.com?subject=Inter%C3%A9s%20en%20piloto%20Stack%20Labs" class="btn btn-ghost">✉️ Enviar correo</a>
+<!-- ═══ CONTACTO ═══ -->
+<section class="wrap section" id="contacto">
+  <div class="contact">
+    <div class="contact-photo-wrap">
+      <img
+        class="contact-photo"
+        src="https://i.postimg.cc/J4ySVWkS/Screenshot-20260523-151443-Gallery.jpg"
+        alt="Juan Carlos Pérez Martínez"
+        onerror="this.style.background='#121826';this.alt='JC';">
+    </div>
+    <div class="contact-name">Juan Carlos Pérez Martínez</div>
+    <div class="contact-role">Ingeniero Full Stack</div>
+    <div class="contact-loc">Stack Labs · Querétaro, México · Disponibilidad inmediata</div>
+    <div class="contact-actions">
+      <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20Stack%20Labs%20y%20quiero%20conversar." target="_blank" rel="noopener" class="btn btn-primary">💬 WhatsApp</a>
+      <a href="mailto:celides10@gmail.com?subject=Contacto%20desde%20Stack%20Labs" class="btn btn-ghost">✉️ Enviar correo</a>
     </div>
   </div>
 </section>
@@ -691,9 +715,10 @@
 <footer class="footer">
   <div class="wrap">
     <div class="brand-mini">Stack <span class="labs">Labs</span></div>
-    <strong>Juan Carlos Pérez Martínez</strong> · Desarrollo de software aplicado a industria
+    <div class="slogan-mini">Desarrollo Full Stack nivel industrial</div>
+    <strong>Juan Carlos Pérez Martínez</strong> · Ingeniero Full Stack
     <br>
-    Querétaro, México · Disponibilidad inmediata para pilotos
+    Querétaro, México · Disponibilidad inmediata
   </div>
 </footer>
 
