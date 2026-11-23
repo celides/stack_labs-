@@ -3,39 +3,70 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stack Labs — Desarrollo Full Stack nivel industrial</title>
-<meta name="description" content="Stack Labs · Desarrollo Full Stack nivel industrial. Cuatro líneas de capacidad: comunicación con IA, automatización operativa, inteligencia comercial y monitoreo geoespacial con satélites NASA. Software ya construido y probado.">
+<title>Stack Labs — Ingeniería de Software de Alto Nivel</title>
+<meta name="description" content="Stack Labs · Software que resuelve. Automatización e IA para contadores, abogados y despachos. Respaldados por una red global de +150 ingenieros.">
 <meta name="author" content="Juan Carlos Pérez Martínez">
-<meta property="og:title" content="Stack Labs — Desarrollo Full Stack nivel industrial">
-<meta property="og:description" content="Cuatro líneas de capacidad construidas y validadas. Software que la industria ya puede usar.">
-<meta property="og:type" content="website">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
-  :root{
-    --bg:#0a0e1a;
-    --bg-2:#0f1420;
-    --card:#121826;
-    --card-hover:#171f31;
-    --border:#1f2740;
-    --border-hover:#2a3555;
-    --text:#e8ecf4;
-    --text-muted:#8b94ab;
-    --text-dim:#5a6478;
-    --accent:#00d4ff;
-    --accent-2:#7b61ff;
-    --success:#00d97e;
-    --warning:#ffb547;
-    --info:#4dabf7;
-    --radius:14px;
+  /* ── VARIABLES DE LOS SKINS (TEMAS) ── */
+  :root {
+    /* Tema por defecto: Matrix / Neo */
+    --bg: #050a05;
+    --bg-2: #0a140a;
+    --card: #0f1c0f;
+    --card-hover: #142614;
+    --border: #1a331a;
+    --border-hover: #265226;
+    --text: #e8f4e8;
+    --text-muted: #8ba88b;
+    --text-dim: #5a7a5a;
+    --accent: #00ff41;
+    --accent-2: #008f11;
+    --success: #00ff41;
+    --warning: #ffb547;
+    --info: #4dabf7;
+    --radius: 14px;
   }
+
+  /* Tema Contadores (Corporativo Azul) */
+  body.theme-contadores {
+    --bg: #0a0e1a;
+    --bg-2: #0f1420;
+    --card: #121826;
+    --card-hover: #171f31;
+    --border: #1f2740;
+    --border-hover: #2a3555;
+    --text: #e8ecf4;
+    --text-muted: #8b94ab;
+    --text-dim: #5a6478;
+    --accent: #00d4ff;
+    --accent-2: #7b61ff;
+  }
+
+  /* Tema Abogados (Elegante Dorado/Bordó) */
+  body.theme-abogados {
+    --bg: #140a0a;
+    --bg-2: #1c0f0f;
+    --card: #261414;
+    --card-hover: #331a1a;
+    --border: #402020;
+    --border-hover: #552a2a;
+    --text: #f4ecec;
+    --text-muted: #ab8b8b;
+    --text-dim: #785a5a;
+    --accent: #d4af37;
+    --accent-2: #8b0000;
+  }
+
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
     font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
     background:var(--bg);color:var(--text);line-height:1.6;
     -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    transition: background 0.4s, color 0.4s;
   }
   h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-0.02em;}
   a{color:var(--accent);text-decoration:none;}
@@ -44,6 +75,7 @@
   body::before,body::after{
     content:'';position:fixed;width:600px;height:600px;border-radius:50%;
     filter:blur(130px);opacity:.14;pointer-events:none;z-index:0;
+    transition: background 0.4s;
   }
   body::before{background:var(--accent);top:-300px;left:-200px;}
   body::after{background:var(--accent-2);bottom:-300px;right:-200px;}
@@ -65,6 +97,7 @@
     background:rgba(10,14,26,.85);
     backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
     border-bottom:1px solid var(--border);padding:12px 0;
+    transition: background 0.4s, border-color 0.4s;
   }
   .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;}
   .brand{display:flex;flex-direction:column;line-height:1.15;}
@@ -86,11 +119,24 @@
     text-transform:uppercase;letter-spacing:.08em;margin-top:2px;
     padding-left:16px;
   }
+  
+  /* Selector de Skins */
+  .theme-selector {
+    display: flex; gap: 8px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 20px;
+  }
+  .theme-btn {
+    background: transparent; border: none; color: var(--text-muted); 
+    cursor: pointer; padding: 6px 12px; border-radius: 16px; 
+    font-size: 11px; font-weight: 600; transition: all 0.2s;
+  }
+  .theme-btn:hover { color: var(--text); }
+  .theme-btn.active { background: var(--accent); color: var(--bg); }
+
   .topbar-cta{
     display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
     border-radius:999px;
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    color:#0a0e1a;font-weight:600;font-size:13px;
+    color:var(--bg);font-weight:600;font-size:13px;
     transition:transform .2s,box-shadow .2s;
   }
   .topbar-cta:hover{
@@ -105,6 +151,7 @@
     background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);
     border-radius:999px;font-size:11.5px;font-weight:600;color:var(--accent);
     margin-bottom:26px;text-transform:uppercase;letter-spacing:.08em;
+    transition: all 0.4s;
   }
   .hero h1{
     font-size:clamp(34px,6vw,58px);font-weight:700;line-height:1.08;
@@ -130,7 +177,7 @@
     text-decoration:none;transition:all .2s;border:1px solid transparent;cursor:pointer;
   }
   .btn-primary{
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));color:#0a0e1a;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--bg);
   }
   .btn-primary:hover{
     transform:translateY(-2px);
@@ -138,7 +185,7 @@
   }
   .btn-ghost{background:transparent;color:var(--text);border-color:var(--border);}
   .btn-ghost:hover{
-    border-color:var(--accent);background:rgba(0,212,255,.05);text-decoration:none;
+    border-color:var(--accent);background:rgba(255,255,255,.05);text-decoration:none;
   }
 
   /* ── STATS ── */
@@ -146,8 +193,9 @@
     display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
     background:var(--border);border:1px solid var(--border);
     border-radius:var(--radius);overflow:hidden;margin-bottom:90px;
+    transition: background 0.4s, border-color 0.4s;
   }
-  .stat{background:var(--bg-2);padding:26px 20px;text-align:center;}
+  .stat{background:var(--bg-2);padding:26px 20px;text-align:center;transition: background 0.4s;}
   .stat-num{
     font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
@@ -199,8 +247,8 @@
   .card-icon{
     width:44px;height:44px;border-radius:10px;
     display:flex;align-items:center;justify-content:center;font-size:22px;
-    flex-shrink:0;background:rgba(0,212,255,.08);
-    border:1px solid rgba(0,212,255,.15);
+    flex-shrink:0;background:rgba(255,255,255,.05);
+    border:1px solid var(--border);
   }
   .card-title-wrap{flex:1;min-width:0;}
   .card-title{font-size:17px;font-weight:600;line-height:1.3;margin-bottom:6px;}
@@ -216,14 +264,6 @@
   .pill-poc{
     background:rgba(77,171,247,.12);color:var(--info);
     border:1px solid rgba(77,171,247,.25);
-  }
-  .pill-dev{
-    background:rgba(123,97,255,.12);color:#a58bff;
-    border:1px solid rgba(123,97,255,.25);
-  }
-  .pill-val{
-    background:rgba(255,181,71,.12);color:var(--warning);
-    border:1px solid rgba(255,181,71,.25);
   }
 
   .card-desc{
@@ -246,9 +286,6 @@
     transition:gap .2s;
   }
   .card-link:hover{gap:10px;text-decoration:none;}
-  .card-link.disabled{
-    color:var(--text-dim);cursor:default;pointer-events:none;
-  }
 
   /* ── COLABORACIÓN ── */
   .collab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
@@ -271,15 +308,9 @@
   .contact{
     padding:60px 28px;
     background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(123,97,255,.08));
-    border:1px solid rgba(0,212,255,.2);border-radius:var(--radius);
+    border:1px solid var(--border);border-radius:var(--radius);
     position:relative;overflow:hidden;
     text-align:center;
-  }
-  .contact::before{
-    content:'';position:absolute;top:-50%;left:50%;
-    transform:translateX(-50%);width:400px;height:400px;
-    background:radial-gradient(circle,rgba(0,212,255,.2) 0%,transparent 70%);
-    filter:blur(60px);pointer-events:none;
   }
   .contact-photo-wrap{
     width:130px;height:130px;margin:0 auto 22px;
@@ -292,23 +323,10 @@
     object-fit:cover;display:block;
     background:var(--bg-2);
   }
-  .contact-name{
-    font-size:22px;font-weight:700;margin-bottom:6px;
-    position:relative;z-index:1;
-  }
-  .contact-role{
-    font-size:14px;color:var(--accent);font-weight:600;
-    margin-bottom:10px;position:relative;z-index:1;
-    text-transform:uppercase;letter-spacing:.08em;
-  }
-  .contact-loc{
-    font-size:13px;color:var(--text-muted);
-    margin-bottom:26px;position:relative;z-index:1;
-  }
-  .contact-actions{
-    display:flex;gap:12px;justify-content:center;flex-wrap:wrap;
-    position:relative;z-index:1;
-  }
+  .contact-name{ font-size:22px;font-weight:700;margin-bottom:6px; position:relative;z-index:1; }
+  .contact-role{ font-size:14px;color:var(--accent);font-weight:600; margin-bottom:10px;position:relative;z-index:1; text-transform:uppercase;letter-spacing:.08em; }
+  .contact-loc{ font-size:13px;color:var(--text-muted); margin-bottom:26px;position:relative;z-index:1; }
+  .contact-actions{ display:flex;gap:12px;justify-content:center;flex-wrap:wrap; position:relative;z-index:1; }
 
   /* ── FOOTER ── */
   .footer{
@@ -326,11 +344,17 @@
     -webkit-background-clip:text;-webkit-text-fill-color:transparent;
     background-clip:text;
   }
-  .footer .slogan-mini{
-    font-size:10.5px;color:var(--text-dim);
-    text-transform:uppercase;letter-spacing:.08em;
-    margin-bottom:14px;
+
+  /* ── BOTÓN FLOTANTE DE VOZ ── */
+  #btn-leer {
+    position: fixed; bottom: 20px; right: 20px; z-index: 9999;
+    padding: 14px 20px; border-radius: 50px; border: 1px solid var(--border);
+    cursor: pointer; background: var(--card); color: var(--accent);
+    font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.5); transition: all 0.3s;
+    display: flex; align-items: center; gap: 8px;
   }
+  #btn-leer:hover { transform: scale(1.05); border-color: var(--accent); }
 
   /* ── RESPONSIVE ── */
   @media (max-width:768px){
@@ -340,13 +364,7 @@
     .section{margin-bottom:60px;}
     .hero-actions{flex-direction:column;align-items:stretch;}
     .hero-actions .btn{justify-content:center;}
-    .brand-slogan{font-size:9.5px;padding-left:16px;}
-  }
-  @media (max-width:480px){
-    .grid{grid-template-columns:1fr;}
-    .topbar-cta span.arrow{display:none;}
-    .brand-name{font-size:15px;}
-    .brand-slogan{font-size:9px;}
+    .theme-selector { display: none; } /* Ocultar en móvil para ahorrar espacio */
   }
 </style>
 </head>
@@ -362,8 +380,16 @@
         <span class="brand-dot"></span>
         Stack <span class="labs">Labs</span>
       </div>
-      <div class="brand-slogan">Desarrollo Full Stack nivel industrial</div>
+      <div class="brand-slogan">Software que resuelve. Ingeniería que trasciende.</div>
     </div>
+    
+    <!-- Selector de Skins -->
+    <div class="theme-selector">
+      <button class="theme-btn active" onclick="setTheme('')">🟢 Neo</button>
+      <button class="theme-btn" onclick="setTheme('theme-contadores')">🔵 Contadores</button>
+      <button class="theme-btn" onclick="setTheme('theme-abogados')">🟡 Abogados</button>
+    </div>
+
     <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20Stack%20Labs%20y%20quiero%20conversar." target="_blank" rel="noopener" class="topbar-cta">
       Contacto <span class="arrow">→</span>
     </a>
@@ -372,15 +398,15 @@
 
 <!-- HERO -->
 <header class="wrap hero">
-  <div class="hero-tag">● Stack Labs · Ingeniería de software aplicada</div>
-  <h1>Desarrollo Full Stack<br><span class="highlight">nivel industrial.</span></h1>
+  <div class="hero-tag">● Stack Labs · Ingeniería de software de alto nivel</div>
+  <h1>No eres un freelance.<br><span class="highlight">Estás activando una red global.</span></h1>
   <p>
-    Cuatro líneas de capacidad construidas y validadas. Cada una resuelve un dolor medible:
-    comunicación, automatización, prospección y monitoreo geoespacial con datos satelitales.
+    Stack Labs nace de una comunidad de +150 ingenieros full stack formados en Funval, distribuidos en México, Latinoamérica y Europa. 
+    Cada proyecto se asigna al equipo de especialistas que tu despacho necesita. Tú hablas con una persona; detrás se activa toda una red.
   </p>
   <div class="hero-actions">
-    <a href="#lineas" class="btn btn-primary">Ver capacidades ↓</a>
-    <a href="#colaboracion" class="btn btn-ghost">Modelo de colaboración</a>
+    <a href="#capacidades" class="btn btn-primary">Ver soluciones ↓</a>
+    <a href="https://wa.me/524464044521" target="_blank" class="btn btn-ghost">Diagnóstico sin costo</a>
   </div>
 </header>
 
@@ -388,16 +414,16 @@
 <div class="wrap">
   <div class="stats">
     <div class="stat">
-      <div class="stat-num">2</div>
-      <div class="stat-lbl">En producción</div>
+      <div class="stat-num">+150</div>
+      <div class="stat-lbl">Ingenieros en red</div>
     </div>
     <div class="stat">
-      <div class="stat-num">8</div>
-      <div class="stat-lbl">Prototipos funcionales</div>
+      <div class="stat-num">100%</div>
+      <div class="stat-lbl">Procesos Locales (Sin nube)</div>
     </div>
     <div class="stat">
       <div class="stat-num">2</div>
-      <div class="stat-lbl">En validación</div>
+      <div class="stat-lbl">En Producción</div>
     </div>
     <div class="stat">
       <div class="stat-num">4</div>
@@ -406,18 +432,53 @@
   </div>
 </div>
 
-<!-- ═══ LÍNEA 01 ═══ -->
-<section class="wrap section" id="lineas">
+<!-- ═══ ENFOQUE ACTUAL: CONTADORES Y ABOGADOS ═══ -->
+<section class="wrap section" id="capacidades">
   <div class="section-head">
-    <span class="section-eyebrow">Línea 01</span>
-    <h2 class="section-title">Comunicación multilingüe con IA</h2>
+    <span class="section-eyebrow">Enfoque Actual</span>
+    <h2 class="section-title">Automatización para Despachos y Profesionales</h2>
     <p class="section-desc">
-      Elimina la barrera del idioma en planta, en piso y en reuniones técnicas.
-      Traducción en tiempo real y asistentes de voz manos libres.
+      Este mes estamos construyendo soluciones específicas para <strong>contadores, abogados y despachos</strong>. 
+      Si tu proceso es manual, repetitivo y con datos sensibles, es nuestro terreno. Cero filtraciones, cero licencias mensuales abusivas.
     </p>
   </div>
   <div class="grid">
+    
+    <!-- DCC TOOLBOX -->
+    <article class="card">
+      <div class="card-head">
+        <div class="card-icon">⚡</div>
+        <div class="card-title-wrap">
+          <h3 class="card-title">DCC Toolbox</h3>
+          <span class="pill pill-prod">En producción</span>
+        </div>
+      </div>
+      <p class="card-desc">Suite de automatización con OCR local, calculadoras, plantillas y bitácoras auditables. No necesita internet para funcionar.</p>
+      <div class="card-use">
+        <strong>Para qué sirve</strong>
+        Reducir tiempos de captura, calcular honorarios o liquidaciones al instante. Ideal para despachos contables y jurídicos que manejan datos confidenciales.
+      </div>
+      <a href="https://dcc-suite-enterprise-eskn.vercel.app/" target="_blank" rel="noopener" class="card-link">Probar la suite →</a>
+    </article>
 
+    <!-- SIGIA -->
+    <article class="card">
+      <div class="card-head">
+        <div class="card-icon">📋</div>
+        <div class="card-title-wrap">
+          <h3 class="card-title">SIGIA · Inocuidad Alimentaria</h3>
+          <span class="pill pill-poc">Prototipo</span>
+        </div>
+      </div>
+      <p class="card-desc">Sistema de Gestión de Inocuidad Alimentaria (SQF). Documentos, evidencias e informes en un solo lugar, con manejo por voz.</p>
+      <div class="card-use">
+        <strong>Para qué sirve</strong>
+        Consultores y auditores que necesitan armar informes profesionales rápido, dictando notas y generando reportes en Word o PDF.
+      </div>
+      <a href="https://stack-labs-prototiposigia.vercel.app/" target="_blank" rel="noopener" class="card-link">Probar prototipo →</a>
+    </article>
+
+    <!-- VOXFLOW -->
     <article class="card">
       <div class="card-head">
         <div class="card-icon">🎙️</div>
@@ -426,234 +487,62 @@
           <span class="pill pill-prod">En producción</span>
         </div>
       </div>
-      <p class="card-desc">Traductor de voz en tiempo real con IA. Escucha, traduce y muestra hasta 24 idiomas en pantalla. Full stack con API serverless y credenciales resguardadas.</p>
+      <p class="card-desc">Traductor de voz en tiempo real con IA. Escucha, traduce y muestra hasta 24 idiomas en pantalla.</p>
       <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Capacitación y seguridad en el idioma de cada operador. Reuniones con proveedores extranjeros sin intérprete. Onboarding acelerado en planta.
+        <strong>Para qué sirve</strong>
+        Reuniones con clientes extranjeros sin necesidad de intérprete. Capacitaciones y atención a personas de otros idiomas en tiempo real.
       </div>
- <a href="https://traductorvozotexto.vercel.app/" target="_blank" rel="noopener" class="card-link">Probar app →</a>
-
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🤖</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Stark Industries AI</h3>
-          <span class="pill pill-dev">En desarrollo</span>
-        </div>
-      </div>
-      <p class="card-desc">Asistente de voz conversacional estilo JARVIS (Iron Man). Interfaz manos libres para operación en piso. API de IA pendiente de conectar — arquitectura lista.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Operadores que consultan información, protocolos o historial sin soltar herramienta ni maquinaria. Asistente contextual para piso de producción.
-      </div>
-      <a href="https://stark-industries-tau.vercel.app" target="_blank" rel="noopener" class="card-link">Ver prototipo →</a>
+      <a href="https://traductorvozotexto.vercel.app/" target="_blank" rel="noopener" class="card-link">Probar app →</a>
     </article>
 
   </div>
 </section>
 
-<!-- ═══ LÍNEA 02 ═══ -->
+<!-- ═══ LABORATORIO / R&D ═══ -->
 <section class="wrap section">
   <div class="section-head">
-    <span class="section-eyebrow">Línea 02</span>
-    <h2 class="section-title">Automatización operativa</h2>
+    <span class="section-eyebrow">Laboratorio Stack Labs</span>
+    <h2 class="section-title">Otras capacidades en desarrollo</h2>
     <p class="section-desc">
-      Reduce tiempos, elimina errores de captura y centraliza información en una sola ventana.
-      Funciona 100% local — sin nube, sin fuga de datos.
+      No solo hacemos apps para despachos. Nuestra red de ingenieros también construye herramientas de prospección, monitoreo satelital y asistentes de voz.
     </p>
   </div>
   <div class="grid">
-
     <article class="card">
       <div class="card-head">
-        <div class="card-icon">⚡</div>
+        <div class="card-icon">📱</div>
         <div class="card-title-wrap">
-          <h3 class="card-title">DCC Toolbox v5.9</h3>
+          <h3 class="card-title">Lee por Ti</h3>
           <span class="pill pill-prod">En producción</span>
         </div>
       </div>
-      <p class="card-desc">Suite de automatización con OCR de sistemas legados, calculadoras, plantillas de escalamiento, bitácoras auditables y gamificación para adopción real del usuario.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Reducir AHT, eliminar errores de captura, generar bitácoras auditables con datos enmascarados. Cero dependencia de nube, ideal para sectores regulados.
-      </div>
-      <a href="https://dcc-suite-enterprise-eskn.vercel.app/" target="_blank" rel="noopener" class="card-link">Abrir suite →</a>
+      <p class="card-desc">Asistente de lectura y escritura con OCR, lectura en voz alta y 20 temas visuales.</p>
+      <a href="https://whatsapk-uccl.vercel.app/" target="_blank" rel="noopener" class="card-link">Probar app →</a>
     </article>
 
     <article class="card">
       <div class="card-head">
         <div class="card-icon">📡</div>
         <div class="card-title-wrap">
-          <h3 class="card-title">ShadowPost Pro Engine</h3>
+          <h3 class="card-title">ShadowPost</h3>
           <span class="pill pill-poc">Prototipo</span>
         </div>
       </div>
-      <p class="card-desc">SaaS de automatización de publicación con lógica anti-detección y módulo de pagos integrado. Full stack completo.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Comunicación interna, difusión de protocolos y campañas EHS automatizadas sin intervención manual.
-      </div>
+      <p class="card-desc">Automatización de publicación y prospección en redes para equipos comerciales.</p>
       <a href="https://shadowpost-engine-user-js.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
     </article>
-
-  </div>
-</section>
-
-<!-- ═══ LÍNEA 03 ═══ -->
-<section class="wrap section">
-  <div class="section-head">
-    <span class="section-eyebrow">Línea 03</span>
-    <h2 class="section-title">Inteligencia comercial y de talento</h2>
-    <p class="section-desc">
-      Cinco motores para detectar oportunidades, calificar talento y mapear territorios.
-      Menos prospección manual, más pipeline predecible.
-    </p>
-  </div>
-  <div class="grid">
-
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🏢</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Oracle B2B Shield</h3>
-          <span class="pill pill-poc">Prototipo</span>
-        </div>
-      </div>
-      <p class="card-desc">Motor de detección predictiva de licitaciones y demanda B2B en parques industriales.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Pipeline predecible con leads calificados. Menos prospección a ciegas, más cierre con oportunidad detectada por datos.
-      </div>
-      <a href="https://oracle-b2-b-commercial-shield.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🎯</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Ecosistema de Prospección</h3>
-          <span class="pill pill-poc">Prototipo</span>
-        </div>
-      </div>
-      <p class="card-desc">Plataforma de enriquecimiento de leads y automatización outbound con IA.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Reducir costo por lead y aumentar tasa de conversión comercial con inteligencia de datos.
-      </div>
-      <a href="https://ecosistema-inteligente-de-prospecci.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🧠</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">MindShield AI Cognitive</h3>
-          <span class="pill pill-poc">Prototipo</span>
-        </div>
-      </div>
-      <p class="card-desc">Plataforma de evaluación cognitiva y selección de talento técnico con análisis visual por IA.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Reducir rotación temprana y costo de contratación fallida. Detectar el candidato correcto antes de contratar.
-      </div>
-      <a href="https://mindshield-ai-talent-cognitive-proj.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🗺️</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Target Zones AI Pro</h3>
-          <span class="pill pill-poc">Prototipo</span>
-        </div>
-      </div>
-      <p class="card-desc">Herramienta geoespacial interactiva para mapeo de cobertura y zonas de venta.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Optimizar territorios comerciales, cobertura de servicio en campo y decisiones de expansión territorial.
-      </div>
-      <a href="https://zeus-auto-post-pro-gemini-core-v1-0.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">✍️</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Vulcan Neuro Copy</h3>
-          <span class="pill pill-poc">Prototipo</span>
-        </div>
-      </div>
-      <p class="card-desc">Motor dinámico de generación de copy, propuestas técnicas y contenido comercial con IA.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Propuestas técnicas y comerciales automatizadas sin depender de un equipo de marketing interno.
-      </div>
-      <a href="https://vulcan-neuro-copy-dynamic-engine.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
-    </article>
-
-  </div>
-</section>
-
-<!-- ═══ LÍNEA 04 ═══ -->
-<section class="wrap section">
-  <div class="section-head">
-    <span class="section-eyebrow">Línea 04 · Monitoreo geoespacial</span>
-    <h2 class="section-title">Inteligencia satelital y riesgo ambiental</h2>
-    <p class="section-desc">
-      Motor de inteligencia operativa alimentado por APIs públicas de la NASA y otros organismos satelitales:
-      EONET, Earthdata y Giovanni. Riesgo sísmico, cumplimiento ambiental y mantenimiento predictivo — sin costo de licencia de datos.
-    </p>
-  </div>
-  <div class="grid">
 
     <article class="card">
       <div class="card-head">
         <div class="card-icon">🛰️</div>
         <div class="card-title-wrap">
-          <h3 class="card-title">Gemini Pérez · Mapa Satelital NASA</h3>
+          <h3 class="card-title">Mapa Satelital NASA</h3>
           <span class="pill pill-poc">Prototipo</span>
         </div>
       </div>
-      <p class="card-desc">Mapa interactivo conectado a APIs públicas de la NASA y otros satélites: sismos, incendios, temperatura, calidad de aire y eventos naturales en tiempo real.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Alerta temprana de riesgo sísmico y ambiental · cumplimiento auditable · decisiones de expansión y logística con datos satelitales reales.
-      </div>
-      <a href="https://gemini-perez-investigacion.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver mapa en vivo →</a>
+      <p class="card-desc">Monitoreo de riesgo sísmico, incendios y clima con APIs públicas de la NASA.</p>
+      <a href="https://gemini-perez-investigacion.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver mapa →</a>
     </article>
-
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🌍</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Plataforma de Riesgo Geoespacial</h3>
-          <span class="pill pill-val">En validación</span>
-        </div>
-      </div>
-      <p class="card-desc">Dashboard operativo corporativo: capas de riesgo, cumplimiento y monitoreo geoespacial con datos satelitales de la NASA.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Monitoreo continuo de infraestructura crítica, cumplimiento ambiental y reportes auditables para operaciones en zonas de riesgo.
-      </div>
-      <a href="#" class="card-link disabled">Disponible como primer piloto →</a>
-    </article>
-
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🔌</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Integración IoT y Sensores</h3>
-          <span class="pill pill-val">En validación</span>
-        </div>
-      </div>
-      <p class="card-desc">Capacidad técnica para conectar sensores físicos (temperatura, vibración, calidad de aire) al mismo dashboard geoespacial.</p>
-      <div class="card-use">
-        <strong>Para qué sirve en industria</strong>
-        Mantenimiento predictivo y monitoreo de infraestructura crítica con alertas operativas en tiempo real sobre el mapa satelital.
-      </div>
-      <a href="#" class="card-link disabled">Disponible como primer piloto →</a>
-    </article>
-
   </div>
 </section>
 
@@ -661,32 +550,27 @@
 <section class="wrap section" id="colaboracion">
   <div class="section-head">
     <span class="section-eyebrow">Cómo trabajamos</span>
-    <h2 class="section-title">Modelo de colaboración</h2>
+    <h2 class="section-title">Liderazgo y Equipo</h2>
     <p class="section-desc">
-      Tú aportas cartera, diagnóstico y relación comercial. Stack Labs aporta desarrollo, prototipo, implementación y soporte.
-      Tres modelos para acomodarlo a cómo trabajas con tus clientes.
+      Yo (Juan Carlos) soy tu punto de contacto y líder de proyecto. Pero no estoy solo: según lo que necesites, convoco al especialista adecuado (frontend, datos, IA, móvil). <strong>No soy un todólogo: soy quien arma el equipo correcto para tu problema.</strong>
     </p>
   </div>
   <div class="collab-grid">
-
     <div class="collab-card">
       <div class="collab-num">MODELO 01</div>
       <h3>50 / 50</h3>
       <p>Repartimos la implementación por partes iguales. Ideal cuando el cliente final es de alto valor y quieres compartir riesgo y recompensa.</p>
     </div>
-
     <div class="collab-card">
       <div class="collab-num">MODELO 02</div>
       <h3>Precio de mayoreo</h3>
       <p>Stack Labs entrega precio fijo por proyecto, tú lo revendes al cliente con tu margen. Ideal para proyectos claros y ciclos cortos.</p>
     </div>
-
     <div class="collab-card">
       <div class="collab-num">MODELO 03</div>
       <h3>Comisión por licencia</h3>
       <p>Por cada cliente que use la plataforma recurrente, tú recibes comisión. Ideal para productos que se vuelven ingreso recurrente.</p>
     </div>
-
   </div>
 </section>
 
@@ -694,17 +578,18 @@
 <section class="wrap section" id="contacto">
   <div class="contact">
     <div class="contact-photo-wrap">
+      <!-- ⚠️ REEMPLAZA ESTE ENLACE POR EL LINK DIRECTO DE TU FOTO EN GITHUB (Clic derecho -> Copiar dirección de imagen) -->
       <img
         class="contact-photo"
-        src="https://i.postimg.cc/J4ySVWkS/Screenshot-20260523-151443-Gallery.jpg"
+        src="https://raw.githubusercontent.com/celides/stack_labs-/main/ingjuanstacklabs.jpg"
         alt="Juan Carlos Pérez Martínez"
         onerror="this.style.background='#121826';this.alt='JC';">
     </div>
     <div class="contact-name">Juan Carlos Pérez Martínez</div>
-    <div class="contact-role">Ingeniero Full Stack</div>
-    <div class="contact-loc">Stack Labs · Querétaro, México · Disponibilidad inmediata</div>
+    <div class="contact-role">Líder de Proyecto · Stack Labs</div>
+    <div class="contact-loc">Querétaro, México · Red global de ingenieros</div>
     <div class="contact-actions">
-      <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20Stack%20Labs%20y%20quiero%20conversar." target="_blank" rel="noopener" class="btn btn-primary">💬 WhatsApp</a>
+      <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20la%20p%C3%A1gina%20de%20Stack%20Labs%20y%20quiero%20un%20diagn%C3%B3stico." target="_blank" rel="noopener" class="btn btn-primary">💬 WhatsApp: 446 404 45 21</a>
       <a href="mailto:celides10@gmail.com?subject=Contacto%20desde%20Stack%20Labs" class="btn btn-ghost">✉️ Enviar correo</a>
     </div>
   </div>
@@ -714,12 +599,84 @@
 <footer class="footer">
   <div class="wrap">
     <div class="brand-mini">Stack <span class="labs">Labs</span></div>
-    <div class="slogan-mini">Desarrollo Full Stack nivel industrial</div>
-    <strong>Juan Carlos Pérez Martínez</strong> · Ingeniero Full Stack
+    <div style="font-size: 10.5px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 14px;">
+      Software que resuelve. Ingeniería que trasciende.
+    </div>
+    <strong>Juan Carlos Pérez Martínez</strong> · Líder de Proyecto
     <br>
-    Querétaro, México · Disponibilidad inmediata
+    Querétaro, México · 446 404 45 21
   </div>
 </footer>
+
+<!-- BOTÓN FLOTANTE DE LECTURA POR VOZ -->
+<button id="btn-leer" aria-label="Leer esta página en voz alta">
+  🔊 Leer página
+</button>
+
+<script>
+  // ── 1. LÓGICA DE LOS SKINS (TEMAS) ──
+  function setTheme(themeClass) {
+    // Remover clases anteriores
+    document.body.classList.remove('theme-contadores', 'theme-abogados');
+    
+    // Aplicar nuevo tema
+    if (themeClass) {
+      document.body.classList.add(themeClass);
+    }
+
+    // Actualizar estado de los botones
+    document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
+    event.target.classList.add('active');
+  }
+
+  // ── 2. LÓGICA DEL LECTOR DE VOZ ──
+  const btnLeer = document.getElementById('btn-leer');
+  let speaking = false;
+
+  // Función para extraer el texto de la página
+  function getPageText() {
+    const sel = 'h1,h2,h3,h4,p,li,blockquote,.card-desc,.card-use';
+    return Array.from(document.querySelectorAll(sel))
+      .map(el => el.innerText.trim())
+      .filter(t => t.length > 0)
+      .join('. ');
+  }
+
+  function stopReading() {
+    window.speechSynthesis.cancel();
+    speaking = false;
+    btnLeer.innerHTML = '🔊 Leer página';
+  }
+
+  btnLeer.addEventListener('click', () => {
+    if (speaking) {
+      stopReading();
+      return;
+    }
+
+    const text = getPageText();
+    if (!text) return;
+
+    const utterance = new SpeechSynthesisUtterance(text);
+    utterance.lang = 'es-MX'; 
+    utterance.rate = 1; 
+
+    // Buscar una voz en español
+    const voices = window.speechSynthesis.getVoices();
+    const esVoice = voices.find(v => v.lang.startsWith('es'));
+    if (esVoice) utterance.voice = esVoice;
+
+    utterance.onend = stopReading;
+    utterance.onerror = stopReading;
+
+    window.speechSynthesis.speak(utterance);
+    speaking = true;
+    btnLeer.innerHTML = '⏹ Detener lectura';
+  });
+
+  // Precargar voces (algunos navegadores lo requieren)
+  window.speechSynthesis.onvoiceschanged = () => {};
+</script>
 
 </body>
 </html>
