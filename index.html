@@ -3,368 +3,206 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Stack Labs — Ingeniería de Software de Alto Nivel</title>
-<meta name="description" content="Stack Labs · Software que resuelve. Automatización e IA para contadores, abogados y despachos. Respaldados por una red global de +150 ingenieros.">
-<meta name="author" content="Juan Carlos Pérez Martínez">
+<title>Stack Labs — Software que resuelve. Ingeniería que trasciende.</title>
+<meta name="description" content="Automatización e IA para contadores, abogados y despachos. Privacidad absoluta, 100% local.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
   /* ── VARIABLES DE LOS SKINS (TEMAS) ── */
   :root {
-    /* Tema por defecto: Matrix / Neo */
-    --bg: #050a05;
-    --bg-2: #0a140a;
-    --card: #0f1c0f;
-    --card-hover: #142614;
-    --border: #1a331a;
-    --border-hover: #265226;
-    --text: #e8f4e8;
-    --text-muted: #8ba88b;
-    --text-dim: #5a7a5a;
-    --accent: #00ff41;
-    --accent-2: #008f11;
-    --success: #00ff41;
-    --warning: #ffb547;
-    --info: #4dabf7;
+    /* Tema Matrix / Neo */
+    --bg: #050a05; --bg-2: #0a140a; --card: #0f1c0f; --card-hover: #142614;
+    --border: #1a331a; --border-hover: #265226; --text: #e8f4e8;
+    --text-muted: #8ba88b; --text-dim: #5a7a5a;
+    --accent: #00ff41; --accent-2: #008f11;
+    --success: #00ff41; --warning: #ffb547; --info: #4dabf7;
     --radius: 14px;
   }
-
-  /* Tema Contadores (Corporativo Azul) */
   body.theme-contadores {
-    --bg: #0a0e1a;
-    --bg-2: #0f1420;
-    --card: #121826;
-    --card-hover: #171f31;
-    --border: #1f2740;
-    --border-hover: #2a3555;
-    --text: #e8ecf4;
-    --text-muted: #8b94ab;
-    --text-dim: #5a6478;
-    --accent: #00d4ff;
-    --accent-2: #7b61ff;
+    --bg: #0a0e1a; --bg-2: #0f1420; --card: #121826; --card-hover: #171f31;
+    --border: #1f2740; --border-hover: #2a3555; --text: #e8ecf4;
+    --text-muted: #8b94ab; --text-dim: #5a6478;
+    --accent: #00d4ff; --accent-2: #7b61ff;
   }
-
-  /* Tema Abogados (Elegante Dorado/Bordó) */
   body.theme-abogados {
-    --bg: #140a0a;
-    --bg-2: #1c0f0f;
-    --card: #261414;
-    --card-hover: #331a1a;
-    --border: #402020;
-    --border-hover: #552a2a;
-    --text: #f4ecec;
-    --text-muted: #ab8b8b;
-    --text-dim: #785a5a;
-    --accent: #d4af37;
-    --accent-2: #8b0000;
+    --bg: #140a0a; --bg-2: #1c0f0f; --card: #261414; --card-hover: #331a1a;
+    --border: #402020; --border-hover: #552a2a; --text: #f4ecec;
+    --text-muted: #ab8b8b; --text-dim: #785a5a;
+    --accent: #d4af37; --accent-2: #8b0000;
   }
 
   *{margin:0;padding:0;box-sizing:border-box;}
   html{scroll-behavior:smooth;}
   body{
-    font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
-    background:var(--bg);color:var(--text);line-height:1.6;
-    -webkit-font-smoothing:antialiased;overflow-x:hidden;
+    font-family:'Inter',sans-serif; background:var(--bg); color:var(--text);
+    line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
     transition: background 0.4s, color 0.4s;
   }
-  h1,h2,h3,h4{font-family:'Space Grotesk','Inter',sans-serif;letter-spacing:-0.02em;}
-  a{color:var(--accent);text-decoration:none;}
+  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em;}
+  a{color:var(--accent); text-decoration:none; transition: color 0.3s;}
   a:hover{text-decoration:underline;}
 
   body::before,body::after{
-    content:'';position:fixed;width:600px;height:600px;border-radius:50%;
-    filter:blur(130px);opacity:.14;pointer-events:none;z-index:0;
+    content:''; position:fixed; width:600px; height:600px; border-radius:50%;
+    filter:blur(130px); opacity:.14; pointer-events:none; z-index:0;
     transition: background 0.4s;
   }
-  body::before{background:var(--accent);top:-300px;left:-200px;}
-  body::after{background:var(--accent-2);bottom:-300px;right:-200px;}
+  body::before{background:var(--accent); top:-300px; left:-200px;}
+  body::after{background:var(--accent-2); bottom:-300px; right:-200px;}
   .grid-overlay{
-    position:fixed;inset:0;pointer-events:none;z-index:0;
-    background-image:
-      linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
-      linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background-image: linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
     background-size:48px 48px;
     mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
     -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
   }
 
-  .wrap{max-width:1120px;margin:0 auto;padding:0 24px;position:relative;z-index:1;}
+  .wrap{max-width:1120px; margin:0 auto; padding:0 24px; position:relative; z-index:1;}
 
-  /* ── TOPBAR ── */
+  /* ── TOPBAR & SKINS ── */
   .topbar{
-    position:sticky;top:0;z-index:100;
-    background:rgba(10,14,26,.85);
-    backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
-    border-bottom:1px solid var(--border);padding:12px 0;
+    position:sticky; top:0; z-index:100; background:rgba(10,14,26,.85);
+    backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:12px 0;
     transition: background 0.4s, border-color 0.4s;
   }
-  .topbar-inner{display:flex;align-items:center;justify-content:space-between;gap:16px;}
-  .brand{display:flex;flex-direction:column;line-height:1.15;}
-  .brand-name{
-    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:17px;
-    letter-spacing:-0.01em;display:flex;align-items:center;gap:8px;
-  }
-  .brand-dot{
-    width:8px;height:8px;border-radius:50%;background:var(--success);
-    box-shadow:0 0 12px var(--success);flex-shrink:0;
-  }
-  .brand-name .labs{
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    background-clip:text;
-  }
-  .brand-slogan{
-    font-size:10.5px;font-weight:600;color:var(--text-muted);
-    text-transform:uppercase;letter-spacing:.08em;margin-top:2px;
-    padding-left:16px;
-  }
+  .topbar-inner{display:flex; align-items:center; justify-content:space-between; gap:16px;}
+  .brand{display:flex; flex-direction:column; line-height:1.15;}
+  .brand-name{font-weight:700; font-size:17px; display:flex; align-items:center; gap:8px;}
+  .brand-dot{width:8px; height:8px; border-radius:50%; background:var(--success); box-shadow:0 0 12px var(--success);}
+  .brand-name .labs{background:linear-gradient(135deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
+  .brand-slogan{font-size:10px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:.08em; margin-top:2px; padding-left:16px;}
   
-  /* Selector de Skins */
-  .theme-selector {
-    display: flex; gap: 8px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 20px;
-  }
-  .theme-btn {
-    background: transparent; border: none; color: var(--text-muted); 
-    cursor: pointer; padding: 6px 12px; border-radius: 16px; 
-    font-size: 11px; font-weight: 600; transition: all 0.2s;
-  }
+  .theme-selector { display: flex; gap: 6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 20px; border: 1px solid var(--border); }
+  .theme-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; padding: 6px 10px; border-radius: 16px; font-size: 11px; font-weight: 600; transition: all 0.2s; font-family: 'Inter', sans-serif;}
   .theme-btn:hover { color: var(--text); }
   .theme-btn.active { background: var(--accent); color: var(--bg); }
 
   .topbar-cta{
-    display:inline-flex;align-items:center;gap:6px;padding:8px 16px;
-    border-radius:999px;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    color:var(--bg);font-weight:600;font-size:13px;
-    transition:transform .2s,box-shadow .2s;
+    display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px;
+    background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:var(--bg);
+    font-weight:600; font-size:13px; transition:transform .2s;
   }
-  .topbar-cta:hover{
-    transform:translateY(-1px);
-    box-shadow:0 6px 24px rgba(0,212,255,.35);text-decoration:none;
-  }
+  .topbar-cta:hover{transform:translateY(-1px); text-decoration:none;}
 
   /* ── HERO ── */
-  .hero{padding:80px 0 60px;text-align:center;}
+  .hero{padding:80px 0 60px; text-align:center;}
   .hero-tag{
-    display:inline-flex;align-items:center;gap:8px;padding:6px 14px;
-    background:rgba(0,212,255,.08);border:1px solid rgba(0,212,255,.2);
-    border-radius:999px;font-size:11.5px;font-weight:600;color:var(--accent);
-    margin-bottom:26px;text-transform:uppercase;letter-spacing:.08em;
-    transition: all 0.4s;
+    display:inline-flex; padding:6px 14px; background:rgba(255,255,255,.05); border:1px solid var(--border);
+    border-radius:999px; font-size:11.5px; font-weight:600; color:var(--accent); margin-bottom:26px; text-transform:uppercase;
   }
   .hero h1{
-    font-size:clamp(34px,6vw,58px);font-weight:700;line-height:1.08;
-    margin-bottom:24px;
-    background:linear-gradient(180deg,#ffffff 0%,#a8b2c6 100%);
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    background-clip:text;
+    font-size:clamp(34px,6vw,58px); font-weight:700; line-height:1.08; margin-bottom:24px;
+    min-height: 120px; /* Para evitar saltos en la animación */
   }
-  .hero h1 .highlight{
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    background-clip:text;
+  .hero h1 .highlight{color:var(--accent);}
+  .typewriter::after {
+    content: '|'; animation: blink 1s step-end infinite; color: var(--accent);
   }
-  .hero p{
-    font-size:clamp(15px,2vw,18px);color:var(--text-muted);
-    max-width:680px;margin:0 auto 32px;line-height:1.6;
-  }
-  .hero-actions{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;}
+  @keyframes blink { 50% { opacity: 0; } }
+  
+  .hero p{font-size:clamp(15px,2vw,18px); color:var(--text-muted); max-width:680px; margin:0 auto 32px;}
+  .hero-actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
 
   .btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:12px 24px;border-radius:999px;font-size:14px;font-weight:600;
-    text-decoration:none;transition:all .2s;border:1px solid transparent;cursor:pointer;
+    display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:999px;
+    font-size:14px; font-weight:600; text-decoration:none; transition:all .2s; border:1px solid transparent; cursor:pointer;
   }
-  .btn-primary{
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));color:var(--bg);
-  }
-  .btn-primary:hover{
-    transform:translateY(-2px);
-    box-shadow:0 8px 28px rgba(0,212,255,.35);text-decoration:none;
-  }
-  .btn-ghost{background:transparent;color:var(--text);border-color:var(--border);}
-  .btn-ghost:hover{
-    border-color:var(--accent);background:rgba(255,255,255,.05);text-decoration:none;
-  }
+  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:var(--bg);}
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,212,255,.35); text-decoration:none;}
+  .btn-ghost{background:transparent; color:var(--text); border-color:var(--border);}
+  .btn-ghost:hover{border-color:var(--accent); background:rgba(255,255,255,.05); text-decoration:none;}
 
-  /* ── STATS ── */
-  .stats{
-    display:grid;grid-template-columns:repeat(4,1fr);gap:1px;
-    background:var(--border);border:1px solid var(--border);
-    border-radius:var(--radius);overflow:hidden;margin-bottom:90px;
-    transition: background 0.4s, border-color 0.4s;
-  }
-  .stat{background:var(--bg-2);padding:26px 20px;text-align:center;transition: background 0.4s;}
-  .stat-num{
-    font-family:'Space Grotesk',sans-serif;font-size:34px;font-weight:700;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    background-clip:text;line-height:1;margin-bottom:8px;
-  }
-  .stat-lbl{
-    font-size:11px;color:var(--text-muted);text-transform:uppercase;
-    letter-spacing:.08em;font-weight:600;
-  }
-
-  /* ── SECTIONS ── */
+  /* ── SECTIONS & CARDS ── */
   .section{margin-bottom:80px;}
-  .section-head{margin-bottom:32px;max-width:720px;}
-  .section-eyebrow{
-    display:inline-block;font-size:11.5px;font-weight:700;
-    text-transform:uppercase;letter-spacing:.1em;
-    color:var(--accent);margin-bottom:10px;
-  }
-  .section-title{
-    font-size:clamp(24px,3.5vw,34px);font-weight:700;
-    line-height:1.15;margin-bottom:12px;
-  }
-  .section-desc{font-size:15.5px;color:var(--text-muted);line-height:1.6;}
+  .section-head{margin-bottom:32px; max-width:720px;}
+  .section-eyebrow{font-size:11.5px; font-weight:700; text-transform:uppercase; color:var(--accent); margin-bottom:10px; display:block;}
+  .section-title{font-size:clamp(24px,3.5vw,34px); font-weight:700; line-height:1.15; margin-bottom:12px;}
+  .section-desc{font-size:15.5px; color:var(--text-muted);}
 
-  /* ── CARDS ── */
-  .grid{
-    display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));
-    gap:16px;
-  }
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:20px;}
   .card{
-    background:var(--card);border:1px solid var(--border);
-    border-radius:var(--radius);padding:24px;
-    display:flex;flex-direction:column;
-    transition:all .25s;position:relative;overflow:hidden;
+    background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;
+    display:flex; flex-direction:column; transition:all .25s; position:relative; overflow:hidden;
   }
-  .card::before{
-    content:'';position:absolute;top:0;left:0;right:0;height:2px;
-    background:linear-gradient(90deg,var(--accent),var(--accent-2));
-    opacity:0;transition:opacity .25s;
-  }
-  .card:hover{
-    border-color:var(--border-hover);background:var(--card-hover);
-    transform:translateY(-3px);
-  }
-  .card:hover::before{opacity:1;}
-
-  .card-head{display:flex;align-items:flex-start;gap:14px;margin-bottom:16px;}
+  .card:hover{border-color:var(--accent); transform:translateY(-3px);}
+  
+  .card-head{display:flex; align-items:flex-start; gap:14px; margin-bottom:16px;}
   .card-icon{
-    width:44px;height:44px;border-radius:10px;
-    display:flex;align-items:center;justify-content:center;font-size:22px;
-    flex-shrink:0;background:rgba(255,255,255,.05);
-    border:1px solid var(--border);
+    width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; 
+    font-size:22px; flex-shrink:0; background:rgba(255,255,255,.05); border:1px solid var(--border);
   }
-  .card-title-wrap{flex:1;min-width:0;}
-  .card-title{font-size:17px;font-weight:600;line-height:1.3;margin-bottom:6px;}
+  .card-title-wrap{flex:1;}
+  .card-title{font-size:18px; font-weight:600; margin-bottom:4px;}
+  
+  .pill{display:inline-block; padding:3px 9px; border-radius:999px; font-size:10.5px; font-weight:700; text-transform:uppercase;}
+  .pill-prod{background:rgba(0,217,126,.12); color:var(--success); border:1px solid rgba(0,217,126,.25);}
+  .pill-poc{background:rgba(77,171,247,.12); color:var(--info); border:1px solid rgba(77,171,247,.25);}
 
-  .pill{
-    display:inline-block;padding:3px 9px;border-radius:999px;
-    font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;
-  }
-  .pill-prod{
-    background:rgba(0,217,126,.12);color:var(--success);
-    border:1px solid rgba(0,217,126,.25);
-  }
-  .pill-poc{
-    background:rgba(77,171,247,.12);color:var(--info);
-    border:1px solid rgba(77,171,247,.25);
-  }
+  .card-desc{font-size:14px; color:var(--text-muted); margin-bottom:16px;}
 
-  .card-desc{
-    font-size:13.5px;color:var(--text-muted);
-    line-height:1.55;margin-bottom:14px;
+  /* ── ACORDEÓN (SABER MÁS) ── */
+  .btn-saber-mas {
+    background: transparent; border: 1px solid var(--border); color: var(--text);
+    padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
+    display: flex; align-items: center; justify-content: space-between; width: 100%;
+    transition: all 0.2s; font-family: 'Inter', sans-serif;
   }
-  .card-use{
-    font-size:13px;line-height:1.5;padding:11px 13px;
-    background:rgba(255,255,255,.02);border-left:2px solid var(--accent);
-    border-radius:4px;color:var(--text);margin-bottom:16px;
+  .btn-saber-mas:hover { border-color: var(--accent); background: rgba(255,255,255,0.02); }
+  .accordion-content {
+    max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
+    background: rgba(0,0,0,0.15); border-radius: 6px; margin-top: 10px;
   }
-  .card-use strong{
-    color:var(--accent);font-weight:700;font-size:10.5px;
-    text-transform:uppercase;letter-spacing:.06em;
-    display:block;margin-bottom:4px;
-  }
-  .card-link{
-    margin-top:auto;display:inline-flex;align-items:center;gap:6px;
-    font-size:13px;font-weight:600;color:var(--accent);
-    transition:gap .2s;
-  }
-  .card-link:hover{gap:10px;text-decoration:none;}
+  .accordion-inner { padding: 16px; font-size: 14px; line-height: 1.6; border-left: 2px solid var(--accent); }
+  .accordion-inner p { margin-bottom: 12px; color: var(--text); }
+  .accordion-inner p:last-of-type { margin-bottom: 16px; }
 
-  /* ── COLABORACIÓN ── */
-  .collab-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-  .collab-card{
-    background:var(--card);border:1px solid var(--border);
-    border-radius:var(--radius);padding:28px 24px;
-    transition:all .25s;
+  /* ── BOTÓN DE AUDIO PREMIUM ── */
+  .btn-audio {
+    background: var(--bg); border: 1px solid var(--accent); color: var(--accent);
+    padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; font-family: 'Inter', sans-serif;
   }
-  .collab-card:hover{
-    border-color:var(--border-hover);transform:translateY(-2px);
+  .btn-audio:hover { background: var(--accent); color: var(--bg); }
+  
+  .audio-waves { display: none; gap: 3px; align-items: center; height: 12px; }
+  .audio-waves span {
+    display: block; width: 3px; height: 100%; background-color: currentColor; border-radius: 2px;
+    animation: wave 1s infinite ease-in-out;
   }
-  .collab-num{
-    font-family:'Space Grotesk',sans-serif;font-size:12px;font-weight:700;
-    color:var(--accent);margin-bottom:10px;letter-spacing:.12em;
-  }
-  .collab-card h3{font-size:18px;margin-bottom:10px;}
-  .collab-card p{font-size:13.5px;color:var(--text-muted);line-height:1.55;}
+  .audio-waves span:nth-child(2) { animation-delay: 0.2s; }
+  .audio-waves span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes wave { 0%, 100% { height: 4px; } 50% { height: 12px; } }
+  
+  .btn-audio.playing .audio-waves { display: flex; }
 
-  /* ── CONTACTO ── */
-  .contact{
-    padding:60px 28px;
-    background:linear-gradient(135deg,rgba(0,212,255,.08),rgba(123,97,255,.08));
-    border:1px solid var(--border);border-radius:var(--radius);
-    position:relative;overflow:hidden;
-    text-align:center;
+  /* ── SIMULADOR DCC ── */
+  .sim-box { background: rgba(0,0,0,0.2); border: 1px dashed var(--border); padding: 16px; border-radius: 8px; margin-top: 16px; }
+  .sim-box label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
+  .sim-box input[type="range"] { width: 100%; margin-bottom: 16px; accent-color: var(--accent); cursor: pointer; }
+  .sim-result { font-size: 18px; font-weight: 700; color: var(--accent); text-align: center; }
+
+  /* ── CONTACTO & FOOTER ── */
+  .contact {
+    padding:60px 28px; background:linear-gradient(135deg,rgba(255,255,255,.02),rgba(0,0,0,.2));
+    border:1px solid var(--border); border-radius:var(--radius); text-align:center;
   }
-  .contact-photo-wrap{
-    width:130px;height:130px;margin:0 auto 22px;
-    border-radius:50%;padding:3px;
+  .contact-photo-wrap {
+    width:130px; height:130px; margin:0 auto 22px; border-radius:50%; padding:3px;
     background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    position:relative;z-index:1;
   }
-  .contact-photo{
-    width:100%;height:100%;border-radius:50%;
-    object-fit:cover;display:block;
-    background:var(--bg-2);
-  }
-  .contact-name{ font-size:22px;font-weight:700;margin-bottom:6px; position:relative;z-index:1; }
-  .contact-role{ font-size:14px;color:var(--accent);font-weight:600; margin-bottom:10px;position:relative;z-index:1; text-transform:uppercase;letter-spacing:.08em; }
-  .contact-loc{ font-size:13px;color:var(--text-muted); margin-bottom:26px;position:relative;z-index:1; }
-  .contact-actions{ display:flex;gap:12px;justify-content:center;flex-wrap:wrap; position:relative;z-index:1; }
+  .contact-photo { width:100%; height:100%; border-radius:50%; object-fit:cover; background:var(--bg-2); }
+  .contact-name { font-size:22px; font-weight:700; margin-bottom:6px; }
+  .contact-role { font-size:14px; color:var(--accent); font-weight:600; margin-bottom:10px; text-transform:uppercase; }
+  .contact-loc { font-size:13px; color:var(--text-muted); margin-bottom:26px; }
+  
+  .footer { padding:32px 24px 48px; text-align:center; font-size:12.5px; color:var(--text-dim); border-top:1px solid var(--border); margin-top:80px; }
 
-  /* ── FOOTER ── */
-  .footer{
-    padding:32px 24px 48px;text-align:center;
-    font-size:12.5px;color:var(--text-dim);
-    border-top:1px solid var(--border);margin-top:80px;
-  }
-  .footer strong{color:var(--text-muted);font-weight:600;}
-  .footer .brand-mini{
-    font-family:'Space Grotesk',sans-serif;font-weight:700;font-size:14px;
-    margin-bottom:4px;
-  }
-  .footer .brand-mini .labs{
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-    -webkit-background-clip:text;-webkit-text-fill-color:transparent;
-    background-clip:text;
-  }
-
-  /* ── BOTÓN FLOTANTE DE VOZ ── */
-  #btn-leer {
-    position: fixed; bottom: 20px; right: 20px; z-index: 9999;
-    padding: 14px 20px; border-radius: 50px; border: 1px solid var(--border);
-    cursor: pointer; background: var(--card); color: var(--accent);
-    font-size: 15px; font-weight: 700; font-family: 'Inter', sans-serif;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.5); transition: all 0.3s;
-    display: flex; align-items: center; gap: 8px;
-  }
-  #btn-leer:hover { transform: scale(1.05); border-color: var(--accent); }
-
-  /* ── RESPONSIVE ── */
   @media (max-width:768px){
-    .hero{padding:60px 0 50px;}
-    .stats{grid-template-columns:repeat(2,1fr);margin-bottom:60px;}
-    .collab-grid{grid-template-columns:1fr;}
-    .section{margin-bottom:60px;}
-    .hero-actions{flex-direction:column;align-items:stretch;}
-    .hero-actions .btn{justify-content:center;}
-    .theme-selector { display: none; } /* Ocultar en móvil para ahorrar espacio */
+    .topbar-inner { flex-wrap: wrap; justify-content: center; }
+    .theme-selector { order: 3; width: 100%; justify-content: center; margin-top: 10px; }
+    .hero { padding: 40px 0; }
+    .hero h1 { min-height: 160px; }
   }
 </style>
 </head>
@@ -377,71 +215,41 @@
   <div class="wrap topbar-inner">
     <div class="brand">
       <div class="brand-name">
-        <span class="brand-dot"></span>
-        Stack <span class="labs">Labs</span>
+        <span class="brand-dot"></span> Stack <span class="labs">Labs</span>
       </div>
       <div class="brand-slogan">Software que resuelve. Ingeniería que trasciende.</div>
     </div>
     
-    <!-- Selector de Skins -->
+    <!-- SELECTOR DE SKINS -->
     <div class="theme-selector">
-      <button class="theme-btn active" onclick="setTheme('')">🟢 Neo</button>
-      <button class="theme-btn" onclick="setTheme('theme-contadores')">🔵 Contadores</button>
-      <button class="theme-btn" onclick="setTheme('theme-abogados')">🟡 Abogados</button>
+      <button class="theme-btn active" onclick="setTheme('', this)">🟢 Neo</button>
+      <button class="theme-btn" onclick="setTheme('theme-contadores', this)">🔵 Contadores</button>
+      <button class="theme-btn" onclick="setTheme('theme-abogados', this)">🟡 Abogados</button>
     </div>
 
-    <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20Stack%20Labs%20y%20quiero%20conversar." target="_blank" rel="noopener" class="topbar-cta">
-      Contacto <span class="arrow">→</span>
-    </a>
+    <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20Stack%20Labs%20y%20quiero%20un%20diagn%C3%B3stico." target="_blank" class="topbar-cta">Contacto →</a>
   </div>
 </div>
 
 <!-- HERO -->
 <header class="wrap hero">
   <div class="hero-tag">● Stack Labs · Ingeniería de software de alto nivel</div>
-  <h1>No eres un freelance.<br><span class="highlight">Estás activando una red global.</span></h1>
-  <p>
-    Stack Labs nace de una comunidad de +150 ingenieros full stack formados en Funval, distribuidos en México, Latinoamérica y Europa. 
-    Cada proyecto se asigna al equipo de especialistas que tu despacho necesita. Tú hablas con una persona; detrás se activa toda una red.
-  </p>
+  <h1 id="typewriter" class="typewriter"></h1>
+  <p>Automatización e IA para contadores, abogados y despachos. Desarrollamos las herramientas que tu equipo necesita para dejar de perder tiempo, con privacidad absoluta y cero dependencia de la nube.</p>
   <div class="hero-actions">
-    <a href="#capacidades" class="btn btn-primary">Ver soluciones ↓</a>
+    <a href="#herramientas" class="btn btn-primary">Ver Soluciones ↓</a>
     <a href="https://wa.me/524464044521" target="_blank" class="btn btn-ghost">Diagnóstico sin costo</a>
   </div>
 </header>
 
-<!-- STATS -->
-<div class="wrap">
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-num">+150</div>
-      <div class="stat-lbl">Ingenieros en red</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">100%</div>
-      <div class="stat-lbl">Procesos Locales (Sin nube)</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">2</div>
-      <div class="stat-lbl">En Producción</div>
-    </div>
-    <div class="stat">
-      <div class="stat-num">4</div>
-      <div class="stat-lbl">Líneas de capacidad</div>
-    </div>
-  </div>
-</div>
-
-<!-- ═══ ENFOQUE ACTUAL: CONTADORES Y ABOGADOS ═══ -->
-<section class="wrap section" id="capacidades">
+<!-- SECCIÓN HERRAMIENTAS -->
+<section class="wrap section" id="herramientas">
   <div class="section-head">
-    <span class="section-eyebrow">Enfoque Actual</span>
-    <h2 class="section-title">Automatización para Despachos y Profesionales</h2>
-    <p class="section-desc">
-      Este mes estamos construyendo soluciones específicas para <strong>contadores, abogados y despachos</strong>. 
-      Si tu proceso es manual, repetitivo y con datos sensibles, es nuestro terreno. Cero filtraciones, cero licencias mensuales abusivas.
-    </p>
+    <span class="section-eyebrow">Nuestras Herramientas</span>
+    <h2 class="section-title">Soluciones Reales, No Promesas</h2>
+    <p class="section-desc">Cada aplicación está diseñada para resolver un dolor específico. Haz clic en "Saber más" para descubrir la historia detrás de la tecnología.</p>
   </div>
+
   <div class="grid">
     
     <!-- DCC TOOLBOX -->
@@ -453,12 +261,30 @@
           <span class="pill pill-prod">En producción</span>
         </div>
       </div>
-      <p class="card-desc">Suite de automatización con OCR local, calculadoras, plantillas y bitácoras auditables. No necesita internet para funcionar.</p>
-      <div class="card-use">
-        <strong>Para qué sirve</strong>
-        Reducir tiempos de captura, calcular honorarios o liquidaciones al instante. Ideal para despachos contables y jurídicos que manejan datos confidenciales.
+      <p class="card-desc">Automatiza capturas de datos, cálculos y redacción de documentos. Cero nube, cero filtraciones.</p>
+      
+      <button class="btn-saber-mas" onclick="toggleAccordion('acc-dcc', this)">Saber más <span>↓</span></button>
+      
+      <div class="accordion-content" id="acc-dcc">
+        <div class="accordion-inner">
+          <p>Son las 8:00 PM en el despacho. Llevas tres horas copiando datos de un sistema viejo a un formato de escalamiento. Un error de dedo y todo el documento se cae. La fatiga mental te gana.</p>
+          <p>Imagina que solo tomas una captura de pantalla. La pegas en DCC Toolbox y el motor OCR lee cada carácter. No solo extrae los datos: al llegar a la sección de escalamientos, el sistema te muestra botones con textos predeterminados. Tú eliges la plantilla, agregas un dato variable, y el sistema <strong>autorellena todo el documento</strong> con una redacción impecable. Tú no escribes; tú supervisas.</p>
+          <p>Y aquí está la joya: el motor de automatización corre directamente en tu computadora. Tu información confidencial jamás se sube a la nube. La automatización existe, pero la privacidad es absoluta.</p>
+          
+          <div class="sim-box">
+            <label>Horas perdidas a la semana redactando/copiando:</label>
+            <input type="range" id="horas" min="2" max="40" value="15" oninput="calcularAhorro()">
+            <label>¿Cuánto vale tu hora de trabajo? (MXN):</label>
+            <input type="range" id="sueldo" min="100" max="2000" value="500" step="50" oninput="calcularAhorro()">
+            <div class="sim-result" id="resultado">Calculando...</div>
+          </div>
+
+          <button class="btn-audio" id="btn-audio-dcc" onclick="toggleAudio('acc-dcc', 'btn-audio-dcc', this)">
+            <span class="audio-waves"><span></span><span></span><span></span></span>
+            <span class="btn-text">🔊 Reproducir Narración</span>
+          </button>
+        </div>
       </div>
-      <a href="https://dcc-suite-enterprise-eskn.vercel.app/" target="_blank" rel="noopener" class="card-link">Probar la suite →</a>
     </article>
 
     <!-- SIGIA -->
@@ -466,16 +292,26 @@
       <div class="card-head">
         <div class="card-icon">📋</div>
         <div class="card-title-wrap">
-          <h3 class="card-title">SIGIA · Inocuidad Alimentaria</h3>
+          <h3 class="card-title">SIGIA · Inocuidad</h3>
           <span class="pill pill-poc">Prototipo</span>
         </div>
       </div>
-      <p class="card-desc">Sistema de Gestión de Inocuidad Alimentaria (SQF). Documentos, evidencias e informes en un solo lugar, con manejo por voz.</p>
-      <div class="card-use">
-        <strong>Para qué sirve</strong>
-        Consultores y auditores que necesitan armar informes profesionales rápido, dictando notas y generando reportes en Word o PDF.
+      <p class="card-desc">Gestión de inocuidad para plantas de alimentos, con dictado por voz y generación de informes.</p>
+      
+      <button class="btn-saber-mas" onclick="toggleAccordion('acc-sigia', this)">Saber más <span>↓</span></button>
+      
+      <div class="accordion-content" id="acc-sigia">
+        <div class="accordion-inner">
+          <p>Tienes una auditoría de inocuidad mañana. Tu escritorio es un mar de carpetas, excels desordenados y fotos de evidencias que no sabes dónde guardaste. La ansiedad te aprieta el pecho: una sanción o el cierre temporal de la planta cuesta millones.</p>
+          <p>SIGIA reúne toda la documentación en un solo lugar. Entras con tu celular al piso de la planta, y con las manos libres, registras los hallazgos por voz. El sistema te sugiere qué requisitos aplican y con un solo clic te genera el informe profesional en PDF o Word, listo para enviar.</p>
+          <p>La IA actúa como un asistente de auditoría en tu bolsillo. No sustituye tu juicio, pero elimina el trabajo pesado de recopilar y redactar. La diferencia entre una auditoría exitosa y una pesadilla no es la suerte; es tener la información correcta al alcance de la voz.</p>
+          
+          <button class="btn-audio" onclick="toggleAudio('acc-sigia', 'btn-audio-sigia', this)">
+            <span class="audio-waves"><span></span><span></span><span></span></span>
+            <span class="btn-text">🔊 Reproducir Narración</span>
+          </button>
+        </div>
       </div>
-      <a href="https://stack-labs-prototiposigia.vercel.app/" target="_blank" rel="noopener" class="card-link">Probar prototipo →</a>
     </article>
 
     <!-- VOXFLOW -->
@@ -487,51 +323,25 @@
           <span class="pill pill-prod">En producción</span>
         </div>
       </div>
-      <p class="card-desc">Traductor de voz en tiempo real con IA. Escucha, traduce y muestra hasta 24 idiomas en pantalla.</p>
-      <div class="card-use">
-        <strong>Para qué sirve</strong>
-        Reuniones con clientes extranjeros sin necesidad de intérprete. Capacitaciones y atención a personas de otros idiomas en tiempo real.
-      </div>
-      <a href="https://traductorvozotexto.vercel.app/" target="_blank" rel="noopener" class="card-link">Probar app →</a>
-    </article>
-
-  </div>
-</section>
-
-<!-- ═══ LABORATORIO / R&D ═══ -->
-<section class="wrap section">
-  <div class="section-head">
-    <span class="section-eyebrow">Laboratorio Stack Labs</span>
-    <h2 class="section-title">Otras capacidades en desarrollo</h2>
-    <p class="section-desc">
-      No solo hacemos apps para despachos. Nuestra red de ingenieros también construye herramientas de prospección, monitoreo satelital y asistentes de voz.
-    </p>
-  </div>
-  <div class="grid">
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">📱</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Lee por Ti</h3>
-          <span class="pill pill-prod">En producción</span>
+      <p class="card-desc">Traducción de voz bidireccional en tiempo real para reuniones y atención a clientes globales.</p>
+      
+      <button class="btn-saber-mas" onclick="toggleAccordion('acc-vox', this)">Saber más <span>↓</span></button>
+      
+      <div class="accordion-content" id="acc-vox">
+        <div class="accordion-inner">
+          <p>Estás en una junta crucial con un proveedor extranjero. Hablan rápido, usan tecnicismos, y tú asientes intentando ocultar el pánico de no entender nada. Un malentendido en un contrato puede costar miles de dólares.</p>
+          <p>VoxFlow entra en acción. Abres la app desde el navegador, sin instalar nada. Mientras ellos hablan, la IA te traduce la voz al instante en tu pantalla. Y cuando tú hablas, hace lo mismo para ellos. No es un traductor de textos; es un puente en tiempo real.</p>
+          <p>En el fondo no hay una sola IA, sino dos de las más potentes del mundo (Azure y Gemini) compitiendo en fracciones de segundo para darte la traducción más precisa. En los negocios de hoy, la barrera del idioma no es una desventaja cultural; es una fuga de dinero. VoxFlow la cierra.</p>
+          
+          <button class="btn-audio" onclick="toggleAudio('acc-vox', 'btn-audio-vox', this)">
+            <span class="audio-waves"><span></span><span></span><span></span></span>
+            <span class="btn-text">🔊 Reproducir Narración</span>
+          </button>
         </div>
       </div>
-      <p class="card-desc">Asistente de lectura y escritura con OCR, lectura en voz alta y 20 temas visuales.</p>
-      <a href="https://whatsapk-uccl.vercel.app/" target="_blank" rel="noopener" class="card-link">Probar app →</a>
     </article>
 
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">📡</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">ShadowPost</h3>
-          <span class="pill pill-poc">Prototipo</span>
-        </div>
-      </div>
-      <p class="card-desc">Automatización de publicación y prospección en redes para equipos comerciales.</p>
-      <a href="https://shadowpost-engine-user-js.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver demo →</a>
-    </article>
-
+    <!-- NASA -->
     <article class="card">
       <div class="card-head">
         <div class="card-icon">🛰️</div>
@@ -540,142 +350,159 @@
           <span class="pill pill-poc">Prototipo</span>
         </div>
       </div>
-      <p class="card-desc">Monitoreo de riesgo sísmico, incendios y clima con APIs públicas de la NASA.</p>
-      <a href="https://gemini-perez-investigacion.vercel.app/" target="_blank" rel="noopener" class="card-link">Ver mapa →</a>
+      <p class="card-desc">Inteligencia geoespacial conectada a satélites de la NASA para monitoreo de riesgos y logística.</p>
+      
+      <button class="btn-saber-mas" onclick="toggleAccordion('acc-nasa', this)">Saber más <span>↓</span></button>
+      
+      <div class="accordion-content" id="acc-nasa">
+        <div class="accordion-inner">
+          <p>Un huracán categoría 5 se desvía hacia el puerto principal de tu proveedor. Un sismo paraliza una fábrica en Asia. No son solo noticias; son el preludio de una caída en la bolsa, retrasos en producción y pérdidas millonarias. La industria reacciona cuando ya es demasiado tarde.</p>
+          <p>Nuestra Plataforma Geoespacial te da la ventaja. Conectada a las APIs públicas de la NASA, te muestra el riesgo sísmico, incendios y eventos naturales en tiempo real. No es un mapa para turistas: es una herramienta de inteligencia operativa.</p>
+          <p>Con estos datos, anticipas el impacto en tu cadena de suministro, proteges tu infraestructura y tomas decisiones de inversión con información satelital real, sin pagar licencias costosas. El conocimiento del planeta entero está ahí arriba. Aquellos que lo usan para anticiparse, ganan.</p>
+          
+          <button class="btn-audio" onclick="toggleAudio('acc-nasa', 'btn-audio-nasa', this)">
+            <span class="audio-waves"><span></span><span></span><span></span></span>
+            <span class="btn-text">🔊 Reproducir Narración</span>
+          </button>
+        </div>
+      </div>
     </article>
+
   </div>
 </section>
 
-<!-- ═══ COLABORACIÓN ═══ -->
-<section class="wrap section" id="colaboracion">
-  <div class="section-head">
-    <span class="section-eyebrow">Cómo trabajamos</span>
-    <h2 class="section-title">Liderazgo y Equipo</h2>
-    <p class="section-desc">
-      Yo (Juan Carlos) soy tu punto de contacto y líder de proyecto. Pero no estoy solo: según lo que necesites, convoco al especialista adecuado (frontend, datos, IA, móvil). <strong>No soy un todólogo: soy quien arma el equipo correcto para tu problema.</strong>
-    </p>
-  </div>
-  <div class="collab-grid">
-    <div class="collab-card">
-      <div class="collab-num">MODELO 01</div>
-      <h3>50 / 50</h3>
-      <p>Repartimos la implementación por partes iguales. Ideal cuando el cliente final es de alto valor y quieres compartir riesgo y recompensa.</p>
-    </div>
-    <div class="collab-card">
-      <div class="collab-num">MODELO 02</div>
-      <h3>Precio de mayoreo</h3>
-      <p>Stack Labs entrega precio fijo por proyecto, tú lo revendes al cliente con tu margen. Ideal para proyectos claros y ciclos cortos.</p>
-    </div>
-    <div class="collab-card">
-      <div class="collab-num">MODELO 03</div>
-      <h3>Comisión por licencia</h3>
-      <p>Por cada cliente que use la plataforma recurrente, tú recibes comisión. Ideal para productos que se vuelven ingreso recurrente.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CONTACTO ═══ -->
+<!-- CONTACTO -->
 <section class="wrap section" id="contacto">
   <div class="contact">
     <div class="contact-photo-wrap">
-      <!-- ⚠️ REEMPLAZA ESTE ENLACE POR EL LINK DIRECTO DE TU FOTO EN GITHUB (Clic derecho -> Copiar dirección de imagen) -->
-      <img
-        class="contact-photo"
-        src="https://raw.githubusercontent.com/celides/stack_labs-/main/ingjuanstacklabs.jpg"
-        alt="Juan Carlos Pérez Martínez"
-        onerror="this.style.background='#121826';this.alt='JC';">
+      <!-- ⚠️ REEMPLAZA ESTE ENLACE POR EL LINK DIRECTO DE TU FOTO EN GITHUB -->
+      <img class="contact-photo" src="https://raw.githubusercontent.com/celides/stack_labs-/main/ingjuanstacklabs.jpg" alt="Juan Carlos Pérez Martínez" onerror="this.src='https://ui-avatars.com/api/?name=Juan+Carlos&background=0D8ABC&color=fff';">
     </div>
     <div class="contact-name">Juan Carlos Pérez Martínez</div>
     <div class="contact-role">Líder de Proyecto · Stack Labs</div>
-    <div class="contact-loc">Querétaro, México · Red global de ingenieros</div>
+    <div class="contact-loc">Querétaro, México · +150 ingenieros en red</div>
     <div class="contact-actions">
-      <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20la%20p%C3%A1gina%20de%20Stack%20Labs%20y%20quiero%20un%20diagn%C3%B3stico." target="_blank" rel="noopener" class="btn btn-primary">💬 WhatsApp: 446 404 45 21</a>
-      <a href="mailto:celides10@gmail.com?subject=Contacto%20desde%20Stack%20Labs" class="btn btn-ghost">✉️ Enviar correo</a>
+      <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20la%20p%C3%A1gina%20de%20Stack%20Labs%20y%20quiero%20un%20diagn%C3%B3stico." target="_blank" class="btn btn-primary">💬 WhatsApp: 446 404 45 21</a>
+      <a href="mailto:celides10@gmail.com" class="btn btn-ghost">✉️ Enviar correo</a>
     </div>
   </div>
 </section>
 
-<!-- FOOTER -->
 <footer class="footer">
   <div class="wrap">
-    <div class="brand-mini">Stack <span class="labs">Labs</span></div>
-    <div style="font-size: 10.5px; color: var(--text-dim); text-transform: uppercase; letter-spacing: .08em; margin-bottom: 14px;">
-      Software que resuelve. Ingeniería que trasciende.
-    </div>
-    <strong>Juan Carlos Pérez Martínez</strong> · Líder de Proyecto
-    <br>
-    Querétaro, México · 446 404 45 21
+    <div style="font-family:'Space Grotesk'; font-weight:700; font-size:16px; margin-bottom:4px;">Stack <span style="color:var(--accent)">Labs</span></div>
+    <div style="font-size:10.5px; color:var(--text-dim); text-transform:uppercase; margin-bottom:14px;">Software que resuelve. Ingeniería que trasciende.</div>
+    <strong>Juan Carlos Pérez Martínez</strong> · Líder de Proyecto<br>Querétaro, México · 446 404 45 21
   </div>
 </footer>
 
-<!-- BOTÓN FLOTANTE DE LECTURA POR VOZ -->
-<button id="btn-leer" aria-label="Leer esta página en voz alta">
-  🔊 Leer página
-</button>
-
 <script>
-  // ── 1. LÓGICA DE LOS SKINS (TEMAS) ──
-  function setTheme(themeClass) {
-    // Remover clases anteriores
+  // ── 1. EFECTO MÁQUINA DE ESCRIBIR ──
+  const textToType = "No eres un freelance. Estás activando una red global.";
+  const typewriterElement = document.getElementById("typewriter");
+  let i = 0;
+  
+  function typeWriter() {
+    if (i < textToType.length) {
+      // Si encontramos un punto, hacemos una pausa dramática
+      if (textToType.charAt(i) === '.') {
+        typewriterElement.innerHTML += ".";
+        i++;
+        setTimeout(typeWriter, 600); 
+      } else {
+        typewriterElement.innerHTML += textToType.charAt(i);
+        i++;
+        setTimeout(typeWriter, 50);
+      }
+    }
+  }
+  setTimeout(typeWriter, 500); // Inicia medio segundo después de cargar
+
+  // ── 2. LÓGICA DE SKINS ──
+  function setTheme(themeClass, btnElement) {
     document.body.classList.remove('theme-contadores', 'theme-abogados');
-    
-    // Aplicar nuevo tema
-    if (themeClass) {
-      document.body.classList.add(themeClass);
-    }
-
-    // Actualizar estado de los botones
+    if (themeClass) document.body.classList.add(themeClass);
     document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
-    event.target.classList.add('active');
+    btnElement.classList.add('active');
   }
 
-  // ── 2. LÓGICA DEL LECTOR DE VOZ ──
-  const btnLeer = document.getElementById('btn-leer');
-  let speaking = false;
-
-  // Función para extraer el texto de la página
-  function getPageText() {
-    const sel = 'h1,h2,h3,h4,p,li,blockquote,.card-desc,.card-use';
-    return Array.from(document.querySelectorAll(sel))
-      .map(el => el.innerText.trim())
-      .filter(t => t.length > 0)
-      .join('. ');
+  // ── 3. ACORDEÓN (SABER MÁS) ──
+  function toggleAccordion(id, btn) {
+    const content = document.getElementById(id);
+    const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
+    
+    // Cerrar otros abiertos
+    document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = '0px');
+    document.querySelectorAll('.btn-saber-mas span').forEach(el => el.innerHTML = '↓');
+    
+    if (!isOpen) {
+      content.style.maxHeight = content.scrollHeight + "px";
+      btn.querySelector('span').innerHTML = '↑';
+    } else {
+      content.style.maxHeight = '0px';
+      btn.querySelector('span').innerHTML = '↓';
+    }
   }
 
-  function stopReading() {
-    window.speechSynthesis.cancel();
-    speaking = false;
-    btnLeer.innerHTML = '🔊 Leer página';
+  // ── 4. SIMULADOR DCC ──
+  function calcularAhorro() {
+    const horas = document.getElementById('horas').value;
+    const sueldo = document.getElementById('sueldo').value;
+    const perdidaMensual = horas * 4 * sueldo;
+    document.getElementById('resultado').innerText = `Estás perdiendo ~$${perdidaMensual.toLocaleString('es-MX')} MXN al mes.`;
   }
+  calcularAhorro(); // Ejecutar al cargar
 
-  btnLeer.addEventListener('click', () => {
-    if (speaking) {
-      stopReading();
-      return;
+  // ── 5. LECTOR DE VOZ CON ANIMACIÓN ──
+  let currentUtterance = null;
+
+  function toggleAudio(containerId, btnId, btn) {
+    const btnText = btn.querySelector('.btn-text');
+    
+    // Si ya está hablando, detener
+    if (window.speechSynthesis.speaking) {
+      window.speechSynthesis.cancel();
+      resetAudioButtons();
+      // Si el botón que presionó es el mismo que estaba hablando, solo nos detenemos
+      if (btn.classList.contains('playing')) {
+        btn.classList.remove('playing');
+        btnText.innerHTML = '🔊 Reproducir Narración';
+        return;
+      }
     }
 
-    const text = getPageText();
-    if (!text) return;
+    // Resetear todos los botones visualmente
+    resetAudioButtons();
+    btn.classList.add('playing');
+    btnText.innerHTML = '⏹ Detener Audio';
 
-    const utterance = new SpeechSynthesisUtterance(text);
-    utterance.lang = 'es-MX'; 
-    utterance.rate = 1; 
+    // Extraer solo el texto de los párrafos (ignorando el simulador y el mismo botón)
+    const container = document.getElementById(containerId);
+    const paragraphs = container.querySelectorAll('p');
+    let textToRead = Array.from(paragraphs).map(p => p.innerText).join('. ');
 
-    // Buscar una voz en español
+    currentUtterance = new SpeechSynthesisUtterance(textToRead);
+    currentUtterance.lang = 'es-MX';
+    currentUtterance.rate = 1;
+    
     const voices = window.speechSynthesis.getVoices();
     const esVoice = voices.find(v => v.lang.startsWith('es'));
-    if (esVoice) utterance.voice = esVoice;
+    if (esVoice) currentUtterance.voice = esVoice;
 
-    utterance.onend = stopReading;
-    utterance.onerror = stopReading;
+    currentUtterance.onend = function() {
+      btn.classList.remove('playing');
+      btnText.innerHTML = '🔊 Reproducir Narración';
+    };
 
-    window.speechSynthesis.speak(utterance);
-    speaking = true;
-    btnLeer.innerHTML = '⏹ Detener lectura';
-  });
+    window.speechSynthesis.speak(currentUtterance);
+  }
 
-  // Precargar voces (algunos navegadores lo requieren)
-  window.speechSynthesis.onvoiceschanged = () => {};
+  function resetAudioButtons() {
+    document.querySelectorAll('.btn-audio').forEach(b => {
+      b.classList.remove('playing');
+      b.querySelector('.btn-text').innerHTML = '🔊 Reproducir Narración';
+    });
+  }
 </script>
 
 </body>
