@@ -2,508 +2,171 @@
 <html lang="es">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Stack Labs — Software que resuelve. Ingeniería que trasciende.</title>
-<meta name="description" content="Automatización e IA para contadores, abogados y despachos. Privacidad absoluta, 100% local.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<meta name="description" content="Stack Labs: software a la medida con IA para contadores, abogados, ventas B2B y monitoreo geoespacial.">
 <style>
-  /* ── VARIABLES DE LOS SKINS (TEMAS) ── */
-  :root {
-    /* Tema Matrix / Neo */
-    --bg: #050a05; --bg-2: #0a140a; --card: #0f1c0f; --card-hover: #142614;
-    --border: #1a331a; --border-hover: #265226; --text: #e8f4e8;
-    --text-muted: #8ba88b; --text-dim: #5a7a5a;
-    --accent: #00ff41; --accent-2: #008f11;
-    --success: #00ff41; --warning: #ffb547; --info: #4dabf7;
-    --radius: 14px;
-  }
-  body.theme-contadores {
-    --bg: #0a0e1a; --bg-2: #0f1420; --card: #121826; --card-hover: #171f31;
-    --border: #1f2740; --border-hover: #2a3555; --text: #e8ecf4;
-    --text-muted: #8b94ab; --text-dim: #5a6478;
-    --accent: #00d4ff; --accent-2: #7b61ff;
-  }
-  body.theme-abogados {
-    --bg: #140a0a; --bg-2: #1c0f0f; --card: #261414; --card-hover: #331a1a;
-    --border: #402020; --border-hover: #552a2a; --text: #f4ecec;
-    --text-muted: #ab8b8b; --text-dim: #785a5a;
-    --accent: #d4af37; --accent-2: #8b0000;
-  }
-
-  *{margin:0;padding:0;box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
-  body{
-    font-family:'Inter',sans-serif; background:var(--bg); color:var(--text);
-    line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:hidden;
-    transition: background 0.4s, color 0.4s;
-  }
-  h1,h2,h3,h4{font-family:'Space Grotesk',sans-serif; letter-spacing:-0.02em;}
-  a{color:var(--accent); text-decoration:none; transition: color 0.3s;}
-  a:hover{text-decoration:underline;}
-
-  body::before,body::after{
-    content:''; position:fixed; width:600px; height:600px; border-radius:50%;
-    filter:blur(130px); opacity:.14; pointer-events:none; z-index:0;
-    transition: background 0.4s;
-  }
-  body::before{background:var(--accent); top:-300px; left:-200px;}
-  body::after{background:var(--accent-2); bottom:-300px; right:-200px;}
-  .grid-overlay{
-    position:fixed; inset:0; pointer-events:none; z-index:0;
-    background-image: linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
-    background-size:48px 48px;
-    mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
-    -webkit-mask-image:radial-gradient(ellipse at center,black 30%,transparent 75%);
-  }
-
-  .wrap{max-width:1120px; margin:0 auto; padding:0 24px; position:relative; z-index:1;}
-
-  /* ── TOPBAR & SKINS ── */
-  .topbar{
-    position:sticky; top:0; z-index:100; background:rgba(10,14,26,.85);
-    backdrop-filter:blur(20px); border-bottom:1px solid var(--border); padding:12px 0;
-    transition: background 0.4s, border-color 0.4s;
-  }
-  .topbar-inner{display:flex; align-items:center; justify-content:space-between; gap:16px;}
-  .brand{display:flex; flex-direction:column; line-height:1.15;}
-  .brand-name{font-weight:700; font-size:17px; display:flex; align-items:center; gap:8px;}
-  .brand-dot{width:8px; height:8px; border-radius:50%; background:var(--success); box-shadow:0 0 12px var(--success);}
-  .brand-name .labs{background:linear-gradient(135deg,var(--accent),var(--accent-2)); -webkit-background-clip:text; -webkit-text-fill-color:transparent;}
-  .brand-slogan{font-size:10px; font-weight:600; color:var(--text-muted); text-transform:uppercase; letter-spacing:.08em; margin-top:2px; padding-left:16px;}
-  
-  .theme-selector { display: flex; gap: 6px; background: rgba(255,255,255,0.05); padding: 4px; border-radius: 20px; border: 1px solid var(--border); }
-  .theme-btn { background: transparent; border: none; color: var(--text-muted); cursor: pointer; padding: 6px 10px; border-radius: 16px; font-size: 11px; font-weight: 600; transition: all 0.2s; font-family: 'Inter', sans-serif;}
-  .theme-btn:hover { color: var(--text); }
-  .theme-btn.active { background: var(--accent); color: var(--bg); }
-
-  .topbar-cta{
-    display:inline-flex; align-items:center; gap:6px; padding:8px 16px; border-radius:999px;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:var(--bg);
-    font-weight:600; font-size:13px; transition:transform .2s;
-  }
-  .topbar-cta:hover{transform:translateY(-1px); text-decoration:none;}
-
-  /* ── HERO ── */
-  .hero{padding:80px 0 60px; text-align:center;}
-  .hero-tag{
-    display:inline-flex; padding:6px 14px; background:rgba(255,255,255,.05); border:1px solid var(--border);
-    border-radius:999px; font-size:11.5px; font-weight:600; color:var(--accent); margin-bottom:26px; text-transform:uppercase;
-  }
-  .hero h1{
-    font-size:clamp(34px,6vw,58px); font-weight:700; line-height:1.08; margin-bottom:24px;
-    min-height: 120px; /* Para evitar saltos en la animación */
-  }
-  .hero h1 .highlight{color:var(--accent);}
-  .typewriter::after {
-    content: '|'; animation: blink 1s step-end infinite; color: var(--accent);
-  }
-  @keyframes blink { 50% { opacity: 0; } }
-  
-  .hero p{font-size:clamp(15px,2vw,18px); color:var(--text-muted); max-width:680px; margin:0 auto 32px;}
-  .hero-actions{display:flex; gap:12px; justify-content:center; flex-wrap:wrap;}
-
-  .btn{
-    display:inline-flex; align-items:center; gap:8px; padding:12px 24px; border-radius:999px;
-    font-size:14px; font-weight:600; text-decoration:none; transition:all .2s; border:1px solid transparent; cursor:pointer;
-  }
-  .btn-primary{background:linear-gradient(135deg,var(--accent),var(--accent-2)); color:var(--bg);}
-  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 8px 28px rgba(0,212,255,.35); text-decoration:none;}
-  .btn-ghost{background:transparent; color:var(--text); border-color:var(--border);}
-  .btn-ghost:hover{border-color:var(--accent); background:rgba(255,255,255,.05); text-decoration:none;}
-
-  /* ── SECTIONS & CARDS ── */
-  .section{margin-bottom:80px;}
-  .section-head{margin-bottom:32px; max-width:720px;}
-  .section-eyebrow{font-size:11.5px; font-weight:700; text-transform:uppercase; color:var(--accent); margin-bottom:10px; display:block;}
-  .section-title{font-size:clamp(24px,3.5vw,34px); font-weight:700; line-height:1.15; margin-bottom:12px;}
-  .section-desc{font-size:15.5px; color:var(--text-muted);}
-
-  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(340px,1fr)); gap:20px;}
-  .card{
-    background:var(--card); border:1px solid var(--border); border-radius:var(--radius); padding:24px;
-    display:flex; flex-direction:column; transition:all .25s; position:relative; overflow:hidden;
-  }
-  .card:hover{border-color:var(--accent); transform:translateY(-3px);}
-  
-  .card-head{display:flex; align-items:flex-start; gap:14px; margin-bottom:16px;}
-  .card-icon{
-    width:44px; height:44px; border-radius:10px; display:flex; align-items:center; justify-content:center; 
-    font-size:22px; flex-shrink:0; background:rgba(255,255,255,.05); border:1px solid var(--border);
-  }
-  .card-title-wrap{flex:1;}
-  .card-title{font-size:18px; font-weight:600; margin-bottom:4px;}
-  
-  .pill{display:inline-block; padding:3px 9px; border-radius:999px; font-size:10.5px; font-weight:700; text-transform:uppercase;}
-  .pill-prod{background:rgba(0,217,126,.12); color:var(--success); border:1px solid rgba(0,217,126,.25);}
-  .pill-poc{background:rgba(77,171,247,.12); color:var(--info); border:1px solid rgba(77,171,247,.25);}
-
-  .card-desc{font-size:14px; color:var(--text-muted); margin-bottom:16px;}
-
-  /* ── ACORDEÓN (SABER MÁS) ── */
-  .btn-saber-mas {
-    background: transparent; border: 1px solid var(--border); color: var(--text);
-    padding: 8px 16px; border-radius: 6px; font-size: 13px; font-weight: 600; cursor: pointer;
-    display: flex; align-items: center; justify-content: space-between; width: 100%;
-    transition: all 0.2s; font-family: 'Inter', sans-serif;
-  }
-  .btn-saber-mas:hover { border-color: var(--accent); background: rgba(255,255,255,0.02); }
-  .accordion-content {
-    max-height: 0; overflow: hidden; transition: max-height 0.4s ease-out;
-    background: rgba(0,0,0,0.15); border-radius: 6px; margin-top: 10px;
-  }
-  .accordion-inner { padding: 16px; font-size: 14px; line-height: 1.6; border-left: 2px solid var(--accent); }
-  .accordion-inner p { margin-bottom: 12px; color: var(--text); }
-  .accordion-inner p:last-of-type { margin-bottom: 16px; }
-
-  /* ── BOTÓN DE AUDIO PREMIUM ── */
-  .btn-audio {
-    background: var(--bg); border: 1px solid var(--accent); color: var(--accent);
-    padding: 8px 16px; border-radius: 6px; font-size: 12px; font-weight: 600; cursor: pointer;
-    display: inline-flex; align-items: center; gap: 10px; transition: all 0.2s; font-family: 'Inter', sans-serif;
-  }
-  .btn-audio:hover { background: var(--accent); color: var(--bg); }
-  
-  .audio-waves { display: none; gap: 3px; align-items: center; height: 12px; }
-  .audio-waves span {
-    display: block; width: 3px; height: 100%; background-color: currentColor; border-radius: 2px;
-    animation: wave 1s infinite ease-in-out;
-  }
-  .audio-waves span:nth-child(2) { animation-delay: 0.2s; }
-  .audio-waves span:nth-child(3) { animation-delay: 0.4s; }
-  @keyframes wave { 0%, 100% { height: 4px; } 50% { height: 12px; } }
-  
-  .btn-audio.playing .audio-waves { display: flex; }
-
-  /* ── SIMULADOR DCC ── */
-  .sim-box { background: rgba(0,0,0,0.2); border: 1px dashed var(--border); padding: 16px; border-radius: 8px; margin-top: 16px; }
-  .sim-box label { display: block; font-size: 12px; color: var(--text-muted); margin-bottom: 4px; }
-  .sim-box input[type="range"] { width: 100%; margin-bottom: 16px; accent-color: var(--accent); cursor: pointer; }
-  .sim-result { font-size: 18px; font-weight: 700; color: var(--accent); text-align: center; }
-
-  /* ── CONTACTO & FOOTER ── */
-  .contact {
-    padding:60px 28px; background:linear-gradient(135deg,rgba(255,255,255,.02),rgba(0,0,0,.2));
-    border:1px solid var(--border); border-radius:var(--radius); text-align:center;
-  }
-  .contact-photo-wrap {
-    width:130px; height:130px; margin:0 auto 22px; border-radius:50%; padding:3px;
-    background:linear-gradient(135deg,var(--accent),var(--accent-2));
-  }
-  .contact-photo { width:100%; height:100%; border-radius:50%; object-fit:cover; background:var(--bg-2); }
-  .contact-name { font-size:22px; font-weight:700; margin-bottom:6px; }
-  .contact-role { font-size:14px; color:var(--accent); font-weight:600; margin-bottom:10px; text-transform:uppercase; }
-  .contact-loc { font-size:13px; color:var(--text-muted); margin-bottom:26px; }
-  
-  .footer { padding:32px 24px 48px; text-align:center; font-size:12.5px; color:var(--text-dim); border-top:1px solid var(--border); margin-top:80px; }
-
-  @media (max-width:768px){
-    .topbar-inner { flex-wrap: wrap; justify-content: center; }
-    .theme-selector { order: 3; width: 100%; justify-content: center; margin-top: 10px; }
-    .hero { padding: 40px 0; }
-    .hero h1 { min-height: 160px; }
-  }
+:root{--bg:#050a05;--card:#0f1c0f;--bd:#1a331a;--tx:#e8f4e8;--mu:#8ba88b;--ac:#00ff41;--on:#001a05;--r:14px;--f:'Inter',system-ui,sans-serif}
+body[data-t=ventas]{--bg:#0a0e1a;--card:#121826;--bd:#1f2a45;--tx:#e8ecf4;--mu:#8b94ab;--ac:#00d4ff;--on:#00121a}
+body[data-t=contadores]{--bg:#f5f5f7;--card:#fff;--bd:#e5e5ea;--tx:#1d1d1f;--mu:#6e6e73;--ac:#0071e3;--on:#fff;--r:20px;--f:-apple-system,'SF Pro Display',system-ui,sans-serif}
+body[data-t=abogados]{--bg:#0d0d0f;--card:#17171a;--bd:#3a3220;--tx:#f1ebdc;--mu:#a99f86;--ac:#d4af37;--on:#1a1400;--r:4px;--f:Georgia,'Times New Roman',serif}
+body[data-t=geo]{--bg:#06101c;--card:#0b1b2e;--bd:#16406a;--tx:#e6f1fb;--mu:#86a5c4;--ac:#ff8a3d;--on:#1a0a00}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font-family:var(--f);background:var(--bg);color:var(--tx);line-height:1.6;transition:background .4s,color .4s}
+.w{max-width:1100px;margin:0 auto;padding:0 20px}
+a{color:var(--ac);text-decoration:none}
+.top{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
+.top .w{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;padding-bottom:10px}
+.brand{font-weight:700;font-size:18px}.brand b{color:var(--ac)}
+.brand small{display:block;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-weight:600}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:999px;background:var(--ac);color:var(--on);font-weight:700;font-size:14px;border:0;cursor:pointer;font-family:inherit}
+body[data-t=abogados] .btn{border-radius:2px}
+.btn.g{background:transparent;color:var(--tx);border:1px solid var(--bd)}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:14px 20px;max-width:1100px;margin:0 auto;scrollbar-width:none}
+.tabs button{flex:none;padding:9px 16px;border-radius:999px;border:1px solid var(--bd);background:transparent;color:var(--tx);font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
+body[data-t=abogados] .tabs button{border-radius:2px}
+.tabs button.on{background:var(--ac);color:var(--on);border-color:var(--ac)}
+.hero{text-align:center;padding:48px 0 28px}
+.hero h1{font-size:clamp(30px,6vw,52px);line-height:1.1;margin-bottom:14px}
+.hero h1 span{color:var(--ac)}
+.hero p{color:var(--mu);max-width:660px;margin:0 auto 22px;font-size:1.05rem}
+.panel{background:var(--card);border:1px solid var(--ac);border-radius:var(--r);padding:20px;margin:0 0 24px}
+.panel h3{margin-bottom:8px}.panel li{margin:6px 0 0 18px;color:var(--mu)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding-bottom:40px}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:10px;transition:transform .25s}
+body[data-t=contadores] .card{border:0;box-shadow:0 4px 24px rgba(0,0,0,.06)}
+.card:hover{transform:translateY(-3px)}
+.ch{display:flex;gap:12px;align-items:center}
+.ic{font-size:24px;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--ac) 14%,transparent)}
+.card h3{font-size:17px;line-height:1.25}
+.pill{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ac)}
+.card p{color:var(--mu);font-size:14px}
+.acts{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;padding-top:6px}
+.acts .btn{padding:8px 14px;font-size:13px}
+.ct{text-align:center;padding:48px 20px;border:1px solid var(--bd);border-radius:var(--r);background:var(--card);margin-bottom:40px}
+.ct img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--ac);margin-bottom:14px}
+.ct .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
+footer{text-align:center;color:var(--mu);font-size:12.5px;padding:24px 20px 40px;border-top:1px solid var(--bd)}
 </style>
 </head>
-<body>
+<body data-t="neo">
 
-<div class="grid-overlay"></div>
+<div class="top"><div class="w">
+  <div class="brand">Stack <b>Labs</b><small>Software que resuelve. Ingeniería que trasciende.</small></div>
+  <a class="btn" id="wa1" target="_blank" rel="noopener">WhatsApp</a>
+</div></div>
 
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="wrap topbar-inner">
-    <div class="brand">
-      <div class="brand-name">
-        <span class="brand-dot"></span> Stack <span class="labs">Labs</span>
-      </div>
-      <div class="brand-slogan">Software que resuelve. Ingeniería que trasciende.</div>
-    </div>
-    
-    <!-- SELECTOR DE SKINS -->
-    <div class="theme-selector">
-      <button class="theme-btn active" onclick="setTheme('', this)">🟢 Neo</button>
-      <button class="theme-btn" onclick="setTheme('theme-contadores', this)">🔵 Contadores</button>
-      <button class="theme-btn" onclick="setTheme('theme-abogados', this)">🟡 Abogados</button>
-    </div>
+<nav class="tabs" id="tabs"></nav>
 
-    <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20Stack%20Labs%20y%20quiero%20un%20diagn%C3%B3stico." target="_blank" class="topbar-cta">Contacto →</a>
-  </div>
-</div>
-
-<!-- HERO -->
-<header class="wrap hero">
-  <div class="hero-tag">● Stack Labs · Ingeniería de software de alto nivel</div>
-  <h1 id="typewriter" class="typewriter"></h1>
-  <p>Automatización e IA para contadores, abogados y despachos. Desarrollamos las herramientas que tu equipo necesita para dejar de perder tiempo, con privacidad absoluta y cero dependencia de la nube.</p>
-  <div class="hero-actions">
-    <a href="#herramientas" class="btn btn-primary">Ver Soluciones ↓</a>
-    <a href="https://wa.me/524464044521" target="_blank" class="btn btn-ghost">Diagnóstico sin costo</a>
-  </div>
+<header class="w hero">
+  <h1 id="h1"></h1>
+  <p id="hp"></p>
 </header>
 
-<!-- SECCIÓN HERRAMIENTAS -->
-<section class="wrap section" id="herramientas">
-  <div class="section-head">
-    <span class="section-eyebrow">Nuestras Herramientas</span>
-    <h2 class="section-title">Soluciones Reales, No Promesas</h2>
-    <p class="section-desc">Cada aplicación está diseñada para resolver un dolor específico. Haz clic en "Saber más" para descubrir la historia detrás de la tecnología.</p>
-  </div>
+<main class="w">
+  <div id="panel"></div>
+  <div class="grid" id="grid"></div>
 
-  <div class="grid">
-    
-    <!-- DCC TOOLBOX -->
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">⚡</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">DCC Toolbox</h3>
-          <span class="pill pill-prod">En producción</span>
-        </div>
-      </div>
-      <p class="card-desc">Automatiza capturas de datos, cálculos y redacción de documentos. Cero nube, cero filtraciones.</p>
-      
-      <button class="btn-saber-mas" onclick="toggleAccordion('acc-dcc', this)">Saber más <span>↓</span></button>
-      
-      <div class="accordion-content" id="acc-dcc">
-        <div class="accordion-inner">
-          <p>Son las 8:00 PM en el despacho. Llevas tres horas copiando datos de un sistema viejo a un formato de escalamiento. Un error de dedo y todo el documento se cae. La fatiga mental te gana.</p>
-          <p>Imagina que solo tomas una captura de pantalla. La pegas en DCC Toolbox y el motor OCR lee cada carácter. No solo extrae los datos: al llegar a la sección de escalamientos, el sistema te muestra botones con textos predeterminados. Tú eliges la plantilla, agregas un dato variable, y el sistema <strong>autorellena todo el documento</strong> con una redacción impecable. Tú no escribes; tú supervisas.</p>
-          <p>Y aquí está la joya: el motor de automatización corre directamente en tu computadora. Tu información confidencial jamás se sube a la nube. La automatización existe, pero la privacidad es absoluta.</p>
-          
-          <div class="sim-box">
-            <label>Horas perdidas a la semana redactando/copiando:</label>
-            <input type="range" id="horas" min="2" max="40" value="15" oninput="calcularAhorro()">
-            <label>¿Cuánto vale tu hora de trabajo? (MXN):</label>
-            <input type="range" id="sueldo" min="100" max="2000" value="500" step="50" oninput="calcularAhorro()">
-            <div class="sim-result" id="resultado">Calculando...</div>
-          </div>
-
-          <button class="btn-audio" id="btn-audio-dcc" onclick="toggleAudio('acc-dcc', 'btn-audio-dcc', this)">
-            <span class="audio-waves"><span></span><span></span><span></span></span>
-            <span class="btn-text">🔊 Reproducir Narración</span>
-          </button>
-        </div>
-      </div>
-    </article>
-
-    <!-- SIGIA -->
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">📋</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">SIGIA · Inocuidad</h3>
-          <span class="pill pill-poc">Prototipo</span>
-        </div>
-      </div>
-      <p class="card-desc">Gestión de inocuidad para plantas de alimentos, con dictado por voz y generación de informes.</p>
-      
-      <button class="btn-saber-mas" onclick="toggleAccordion('acc-sigia', this)">Saber más <span>↓</span></button>
-      
-      <div class="accordion-content" id="acc-sigia">
-        <div class="accordion-inner">
-          <p>Tienes una auditoría de inocuidad mañana. Tu escritorio es un mar de carpetas, excels desordenados y fotos de evidencias que no sabes dónde guardaste. La ansiedad te aprieta el pecho: una sanción o el cierre temporal de la planta cuesta millones.</p>
-          <p>SIGIA reúne toda la documentación en un solo lugar. Entras con tu celular al piso de la planta, y con las manos libres, registras los hallazgos por voz. El sistema te sugiere qué requisitos aplican y con un solo clic te genera el informe profesional en PDF o Word, listo para enviar.</p>
-          <p>La IA actúa como un asistente de auditoría en tu bolsillo. No sustituye tu juicio, pero elimina el trabajo pesado de recopilar y redactar. La diferencia entre una auditoría exitosa y una pesadilla no es la suerte; es tener la información correcta al alcance de la voz.</p>
-          
-          <button class="btn-audio" onclick="toggleAudio('acc-sigia', 'btn-audio-sigia', this)">
-            <span class="audio-waves"><span></span><span></span><span></span></span>
-            <span class="btn-text">🔊 Reproducir Narración</span>
-          </button>
-        </div>
-      </div>
-    </article>
-
-    <!-- VOXFLOW -->
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🎙️</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">VoxFlow</h3>
-          <span class="pill pill-prod">En producción</span>
-        </div>
-      </div>
-      <p class="card-desc">Traducción de voz bidireccional en tiempo real para reuniones y atención a clientes globales.</p>
-      
-      <button class="btn-saber-mas" onclick="toggleAccordion('acc-vox', this)">Saber más <span>↓</span></button>
-      
-      <div class="accordion-content" id="acc-vox">
-        <div class="accordion-inner">
-          <p>Estás en una junta crucial con un proveedor extranjero. Hablan rápido, usan tecnicismos, y tú asientes intentando ocultar el pánico de no entender nada. Un malentendido en un contrato puede costar miles de dólares.</p>
-          <p>VoxFlow entra en acción. Abres la app desde el navegador, sin instalar nada. Mientras ellos hablan, la IA te traduce la voz al instante en tu pantalla. Y cuando tú hablas, hace lo mismo para ellos. No es un traductor de textos; es un puente en tiempo real.</p>
-          <p>En el fondo no hay una sola IA, sino dos de las más potentes del mundo (Azure y Gemini) compitiendo en fracciones de segundo para darte la traducción más precisa. En los negocios de hoy, la barrera del idioma no es una desventaja cultural; es una fuga de dinero. VoxFlow la cierra.</p>
-          
-          <button class="btn-audio" onclick="toggleAudio('acc-vox', 'btn-audio-vox', this)">
-            <span class="audio-waves"><span></span><span></span><span></span></span>
-            <span class="btn-text">🔊 Reproducir Narración</span>
-          </button>
-        </div>
-      </div>
-    </article>
-
-    <!-- NASA -->
-    <article class="card">
-      <div class="card-head">
-        <div class="card-icon">🛰️</div>
-        <div class="card-title-wrap">
-          <h3 class="card-title">Mapa Satelital NASA</h3>
-          <span class="pill pill-poc">Prototipo</span>
-        </div>
-      </div>
-      <p class="card-desc">Inteligencia geoespacial conectada a satélites de la NASA para monitoreo de riesgos y logística.</p>
-      
-      <button class="btn-saber-mas" onclick="toggleAccordion('acc-nasa', this)">Saber más <span>↓</span></button>
-      
-      <div class="accordion-content" id="acc-nasa">
-        <div class="accordion-inner">
-          <p>Un huracán categoría 5 se desvía hacia el puerto principal de tu proveedor. Un sismo paraliza una fábrica en Asia. No son solo noticias; son el preludio de una caída en la bolsa, retrasos en producción y pérdidas millonarias. La industria reacciona cuando ya es demasiado tarde.</p>
-          <p>Nuestra Plataforma Geoespacial te da la ventaja. Conectada a las APIs públicas de la NASA, te muestra el riesgo sísmico, incendios y eventos naturales en tiempo real. No es un mapa para turistas: es una herramienta de inteligencia operativa.</p>
-          <p>Con estos datos, anticipas el impacto en tu cadena de suministro, proteges tu infraestructura y tomas decisiones de inversión con información satelital real, sin pagar licencias costosas. El conocimiento del planeta entero está ahí arriba. Aquellos que lo usan para anticiparse, ganan.</p>
-          
-          <button class="btn-audio" onclick="toggleAudio('acc-nasa', 'btn-audio-nasa', this)">
-            <span class="audio-waves"><span></span><span></span><span></span></span>
-            <span class="btn-text">🔊 Reproducir Narración</span>
-          </button>
-        </div>
-      </div>
-    </article>
-
-  </div>
-</section>
-
-<!-- CONTACTO -->
-<section class="wrap section" id="contacto">
-  <div class="contact">
-    <div class="contact-photo-wrap">
-      <!-- ⚠️ REEMPLAZA ESTE ENLACE POR EL LINK DIRECTO DE TU FOTO EN GITHUB -->
-      <img class="contact-photo" src="https://raw.githubusercontent.com/celides/stack_labs-/main/ingjuanstacklabs.jpg" alt="Juan Carlos Pérez Martínez" onerror="this.src='https://ui-avatars.com/api/?name=Juan+Carlos&background=0D8ABC&color=fff';">
+  <section class="ct" id="contacto">
+    <img src="https://raw.githubusercontent.com/celides/stack_labs-/main/ingjuanstacklabs.jpg" alt="Juan Carlos Pérez Martínez" onerror="this.style.display='none'">
+    <h2>Juan Carlos Pérez Martínez</h2>
+    <p style="color:var(--mu)">Ingeniero Full Stack · Stack Labs · Querétaro, México</p>
+    <p style="margin-top:10px">¿Tienes un proceso manual que odias? Lo convertimos en una app a tu medida.</p>
+    <div class="row">
+      <a class="btn" id="wa2" target="_blank" rel="noopener">💬 WhatsApp 446 404 45 21</a>
+      <a class="btn g" href="mailto:celides10@gmail.com?subject=Contacto%20desde%20Stack%20Labs">✉️ Correo</a>
     </div>
-    <div class="contact-name">Juan Carlos Pérez Martínez</div>
-    <div class="contact-role">Líder de Proyecto · Stack Labs</div>
-    <div class="contact-loc">Querétaro, México · +150 ingenieros en red</div>
-    <div class="contact-actions">
-      <a href="https://wa.me/524464044521?text=Hola%20Juan%20Carlos%2C%20vi%20la%20p%C3%A1gina%20de%20Stack%20Labs%20y%20quiero%20un%20diagn%C3%B3stico." target="_blank" class="btn btn-primary">💬 WhatsApp: 446 404 45 21</a>
-      <a href="mailto:celides10@gmail.com" class="btn btn-ghost">✉️ Enviar correo</a>
-    </div>
-  </div>
-</section>
+  </section>
+</main>
 
-<footer class="footer">
-  <div class="wrap">
-    <div style="font-family:'Space Grotesk'; font-weight:700; font-size:16px; margin-bottom:4px;">Stack <span style="color:var(--accent)">Labs</span></div>
-    <div style="font-size:10.5px; color:var(--text-dim); text-transform:uppercase; margin-bottom:14px;">Software que resuelve. Ingeniería que trasciende.</div>
-    <strong>Juan Carlos Pérez Martínez</strong> · Líder de Proyecto<br>Querétaro, México · 446 404 45 21
-  </div>
-</footer>
+<footer>© 2026 Stack Labs · Desarrollo de software a la medida · Querétaro, México</footer>
 
 <script>
-  // ── 1. EFECTO MÁQUINA DE ESCRIBIR ──
-  const textToType = "No eres un freelance. Estás activando una red global.";
-  const typewriterElement = document.getElementById("typewriter");
-  let i = 0;
-  
-  function typeWriter() {
-    if (i < textToType.length) {
-      // Si encontramos un punto, hacemos una pausa dramática
-      if (textToType.charAt(i) === '.') {
-        typewriterElement.innerHTML += ".";
-        i++;
-        setTimeout(typeWriter, 600); 
-      } else {
-        typewriterElement.innerHTML += textToType.charAt(i);
-        i++;
-        setTimeout(typeWriter, 50);
-      }
-    }
-  }
-  setTimeout(typeWriter, 500); // Inicia medio segundo después de cargar
+const WA = "524464044521";
+const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const U = {vox:"https://traductorvozotexto-qszn.vercel.app/", dcc:"https://dcc-suite-enterprise-eskn.vercel.app/", sigia:"https://stack-labs-prototiposigia.vercel.app/", shadow:"https://shadow-post-k3ww.vercel.app", lee:"https://whatsapk-uccl.vercel.app/"};
 
-  // ── 2. LÓGICA DE SKINS ──
-  function setTheme(themeClass, btnElement) {
-    document.body.classList.remove('theme-contadores', 'theme-abogados');
-    if (themeClass) document.body.classList.add(themeClass);
-    document.querySelectorAll('.theme-btn').forEach(btn => btn.classList.remove('active'));
-    btnElement.classList.add('active');
-  }
+// t = temáticas donde aparece. s: P producción, T prototipo, V validación, S próximamente
+const APPS = [
+ {n:"VoxFlow",i:"🎙️",s:"P",t:["neo"],d:"Traductor de voz en tiempo real: alguien habla, tú lo lees y lo escuchas en tu idioma. Sin instalar nada. Nació para que Daniel entendiera sus reuniones.",u:U.vox},
+ {n:"DCC Toolbox",i:"⚡",s:"P",t:["neo","contadores","abogados"],d:"Pegas una captura, el OCR llena los datos, calcula y redacta la nota. Todo corre en tu equipo: tus datos no salen a internet. Adaptable a RFC, IVA, expedientes y más.",u:U.dcc},
+ {n:"SIGIA",i:"🍽️",s:"T",t:["neo"],d:"Inocuidad alimentaria (SQF) sin carpetas ni Excel: evidencias, informes en Word/PDF y consulta de la norma por voz. Datos solo en tu dispositivo. Es una guía, no sustituye a un auditor.",u:U.sigia},
+ {n:"Lee por Ti",i:"📖",s:"P",t:["neo"],d:"Lee en voz alta cualquier texto, dictado o foto (OCR), resaltando cada palabra. 20 temas visuales y voz con IA que corre en tu dispositivo.",u:U.lee},
+ {n:"ShadowPost",i:"📡",s:"T",t:["neo","ventas"],d:"Genera 3 variaciones de tu oferta para publicar en grupos, reparte prospectos entre varios WhatsApp y lleva el avance de tu ruta diaria.",u:U.shadow},
+ {n:"Oracle B2B Shield",i:"🏢",s:"T",t:["neo","ventas"],d:"Detecta licitaciones y demanda B2B en parques industriales para prospectar con datos, no a ciegas.",u:"https://oracle-b2-b-commercial-shield.vercel.app/"},
+ {n:"Ecosistema de Prospección",i:"🎯",s:"T",t:["neo","ventas"],d:"Enriquece leads y automatiza el contacto outbound con IA para bajar el costo por lead.",u:"https://ecosistema-inteligente-de-prospecci.vercel.app/"},
+ {n:"Target Zones AI Pro",i:"🗺️",s:"T",t:["neo","ventas"],d:"Mapa interactivo de cobertura y zonas de venta para optimizar territorios y expansión.",u:"https://zeus-auto-post-pro-gemini-core-v1-0.vercel.app/"},
+ {n:"Vulcan Neuro Copy",i:"✍️",s:"T",t:["neo","ventas"],d:"Genera copy, propuestas técnicas y contenido comercial con IA.",u:"https://vulcan-neuro-copy-dynamic-engine.vercel.app/"},
+ {n:"MindShield AI",i:"🧠",s:"T",t:["neo","ventas"],d:"Evaluación cognitiva y selección de talento técnico con análisis visual por IA.",u:"https://mindshield-ai-talent-cognitive-proj.vercel.app/"},
+ {n:"Stark Industries AI",i:"🤖",s:"T",t:["neo"],d:"Asistente de voz manos libres estilo JARVIS para operación en piso. Arquitectura lista; falta conectar la IA.",u:"https://stark-industries-tau.vercel.app"},
+ {n:"Analítica Fiscal",i:"📈",s:"S",t:["neo","contadores"],d:"Analiza el histórico de tu cartera y señala qué clientes tienen más probabilidad de una revisión del SAT, para anticiparte con estrategia."},
+ {n:"Métrica Fiscal",i:"🧾",s:"S",t:["contadores"],d:"Extrae datos de facturas (XML/PDF), calcula retenciones e IVA y arma el resumen del expediente de cada cliente."},
+ {n:"Bunker Legal",i:"⚖️",s:"S",t:["neo","abogados"],d:"IA local para revisar contratos sin enviar tus documentos a la nube. Cada hallazgo enlaza a su fuente para que lo verifiques."},
+ {n:"Cronos",i:"⏳",s:"S",t:["neo","abogados"],d:"Lee notificaciones, calcula plazos procesales y deja el borrador del escrito listo para tu revisión y firma."},
+ {n:"Mapa Satelital NASA",i:"🛰️",s:"T",t:["neo","geo"],d:"Mapa en vivo con datos públicos de NASA: sismos, incendios, temperatura, calidad del aire y eventos naturales.",u:"https://gemini-perez-investigacion.vercel.app/"},
+ {n:"Plataforma de Riesgo Geoespacial",i:"🌍",s:"V",t:["neo","geo"],d:"Tablero corporativo con capas de riesgo, cumplimiento y reportes auditables. Disponible como primer piloto."},
+ {n:"IoT y Sensores",i:"🔌",s:"V",t:["neo","geo"],d:"Conecta sensores (temperatura, vibración, aire) al mismo mapa para alertas en tiempo real. Disponible como primer piloto."}
+];
+const ST = {P:"En producción",T:"Prototipo",V:"En validación",S:"Próximamente"};
 
-  // ── 3. ACORDEÓN (SABER MÁS) ──
-  function toggleAccordion(id, btn) {
-    const content = document.getElementById(id);
-    const isOpen = content.style.maxHeight && content.style.maxHeight !== '0px';
-    
-    // Cerrar otros abiertos
-    document.querySelectorAll('.accordion-content').forEach(el => el.style.maxHeight = '0px');
-    document.querySelectorAll('.btn-saber-mas span').forEach(el => el.innerHTML = '↓');
-    
-    if (!isOpen) {
-      content.style.maxHeight = content.scrollHeight + "px";
-      btn.querySelector('span').innerHTML = '↑';
-    } else {
-      content.style.maxHeight = '0px';
-      btn.querySelector('span').innerHTML = '↓';
-    }
-  }
+const TABS = {
+ neo:{l:"🟢 Neo",h:'Todo el ecosistema <span>Stack Labs</span>',p:"Automatización, ciencia de datos e IA construidas por un ingeniero full stack. Elige una temática arriba y la página se adapta a tu profesión."},
+ ventas:{l:"📈 Ventas B2B",h:'Más pipeline, <span>menos prospección a ciegas</span>',p:"Herramientas para detectar oportunidades, escribir mejor, repartir leads y mapear territorios."},
+ contadores:{l:"🔵 Contadores",h:'Menos captura. <span>Más estrategia fiscal.</span>',p:"Automatiza facturas, cálculos y expedientes. Todo corre local: los datos de tus clientes no salen de tu equipo."},
+ abogados:{l:"🟡 Abogados",h:'Contratos y plazos <span>bajo control.</span>',p:"IA local y automatización de escritos para que dediques tu tiempo al criterio jurídico, no a la captura."},
+ geo:{l:"🛰️ Geoespacial",h:'Entérate antes <span>de que se mueva el mercado.</span>',p:"Datos satelitales de NASA convertidos en señales: dónde tiembla, qué operaciones se detienen y qué se va a necesitar."}
+};
+const GEO_PANEL = `<div class="panel"><h3>¿Qué puedes anticipar con datos satelitales?</h3><ul>
+<li><b>Terremotos y desastres:</b> ubica dónde ocurren y qué infraestructura y cadenas de suministro quedan en la zona.</li>
+<li><b>Mercados:</b> eventos de gran escala suelen mover bolsas, divisas y materias primas. Te damos la señal temprana; la decisión de inversión es tuya.</li>
+<li><b>Empresas que cierran o frenan:</b> plantas, puertos y rutas afectadas por incendios, inundaciones o sismos.</li>
+<li><b>Reconstrucción:</b> qué materiales y servicios se van a necesitar después (cemento, acero, maquinaria, logística).</li></ul></div>`;
 
-  // ── 4. SIMULADOR DCC ──
-  function calcularAhorro() {
-    const horas = document.getElementById('horas').value;
-    const sueldo = document.getElementById('sueldo').value;
-    const perdidaMensual = horas * 4 * sueldo;
-    document.getElementById('resultado').innerText = `Estás perdiendo ~$${perdidaMensual.toLocaleString('es-MX')} MXN al mes.`;
-  }
-  calcularAhorro(); // Ejecutar al cargar
+let cur = "neo", utter = null;
+const $ = id => document.getElementById(id);
 
-  // ── 5. LECTOR DE VOZ CON ANIMACIÓN ──
-  let currentUtterance = null;
+function say(btn, text){
+  const s = window.speechSynthesis; if(!s) return;
+  const same = btn.dataset.on === "1";
+  s.cancel(); document.querySelectorAll("[data-on]").forEach(b => {b.dataset.on = "0"; b.textContent = "🔊 Escuchar"});
+  if(same) return;
+  utter = new SpeechSynthesisUtterance(text); utter.lang = "es-MX";
+  utter.onend = () => {btn.dataset.on = "0"; btn.textContent = "🔊 Escuchar"};
+  btn.dataset.on = "1"; btn.textContent = "⏹ Detener"; s.speak(utter);
+}
 
-  function toggleAudio(containerId, btnId, btn) {
-    const btnText = btn.querySelector('.btn-text');
-    
-    // Si ya está hablando, detener
-    if (window.speechSynthesis.speaking) {
-      window.speechSynthesis.cancel();
-      resetAudioButtons();
-      // Si el botón que presionó es el mismo que estaba hablando, solo nos detenemos
-      if (btn.classList.contains('playing')) {
-        btn.classList.remove('playing');
-        btnText.innerHTML = '🔊 Reproducir Narración';
-        return;
-      }
-    }
+function render(){
+  document.body.dataset.t = cur;
+  const T = TABS[cur];
+  $("h1").innerHTML = T.h; $("hp").textContent = T.p;
+  $("panel").innerHTML = cur === "geo" ? GEO_PANEL : "";
+  document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.k === cur));
+  const list = APPS.filter(a => a.t.includes(cur));
+  $("grid").innerHTML = "";
+  list.forEach(a => {
+    const c = document.createElement("article"); c.className = "card";
+    c.innerHTML = `<div class="ch"><div class="ic">${a.i}</div><div><h3>${a.n}</h3><span class="pill">${ST[a.s]}</span></div></div><p>${a.d}</p><div class="acts"></div>`;
+    const acts = c.querySelector(".acts");
+    if(a.u){ const l = document.createElement("a"); l.className = "btn"; l.href = a.u; l.target = "_blank"; l.rel = "noopener"; l.textContent = "Probar →"; acts.append(l); }
+    const w = document.createElement("a"); w.className = "btn g"; w.target = "_blank"; w.rel = "noopener";
+    w.href = wa(`Hola Juan Carlos, vi ${a.n} en Stack Labs y quiero ${a.u ? "una demo" : "más información"}.`);
+    w.textContent = a.u ? "Pedir demo" : "Me interesa"; acts.append(w);
+    const v = document.createElement("button"); v.className = "btn g"; v.textContent = "🔊 Escuchar"; v.dataset.on = "0";
+    v.onclick = () => say(v, `${a.n}. ${a.d}`); acts.append(v);
+    $("grid").append(c);
+  });
+  try{ localStorage.setItem("sl-tab", cur) }catch(e){}
+}
 
-    // Resetear todos los botones visualmente
-    resetAudioButtons();
-    btn.classList.add('playing');
-    btnText.innerHTML = '⏹ Detener Audio';
-
-    // Extraer solo el texto de los párrafos (ignorando el simulador y el mismo botón)
-    const container = document.getElementById(containerId);
-    const paragraphs = container.querySelectorAll('p');
-    let textToRead = Array.from(paragraphs).map(p => p.innerText).join('. ');
-
-    currentUtterance = new SpeechSynthesisUtterance(textToRead);
-    currentUtterance.lang = 'es-MX';
-    currentUtterance.rate = 1;
-    
-    const voices = window.speechSynthesis.getVoices();
-    const esVoice = voices.find(v => v.lang.startsWith('es'));
-    if (esVoice) currentUtterance.voice = esVoice;
-
-    currentUtterance.onend = function() {
-      btn.classList.remove('playing');
-      btnText.innerHTML = '🔊 Reproducir Narración';
-    };
-
-    window.speechSynthesis.speak(currentUtterance);
-  }
-
-  function resetAudioButtons() {
-    document.querySelectorAll('.btn-audio').forEach(b => {
-      b.classList.remove('playing');
-      b.querySelector('.btn-text').innerHTML = '🔊 Reproducir Narración';
-    });
-  }
+Object.keys(TABS).forEach(k => {
+  const b = document.createElement("button"); b.dataset.k = k; b.textContent = TABS[k].l;
+  b.onclick = () => {window.speechSynthesis && speechSynthesis.cancel(); cur = k; render(); window.scrollTo({top:0,behavior:"smooth"})};
+  $("tabs").append(b);
+});
+$("wa1").href = $("wa2").href = wa("Hola Juan Carlos, vi Stack Labs y quiero conversar.");
+try{ const s = localStorage.getItem("sl-tab"); if(s && TABS[s]) cur = s }catch(e){}
+render();
 </script>
-
 </body>
 </html>
