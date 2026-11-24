@@ -6,69 +6,78 @@
 <title>Stack Labs — Software que resuelve. Ingeniería que trasciende.</title>
 <meta name="description" content="Stack Labs: software a la medida con IA para contadores, abogados, ventas B2B y monitoreo geoespacial.">
 <style>
-:root{--bg:#050a05;--card:#0f1c0f;--bd:#1a331a;--tx:#e8f4e8;--mu:#8ba88b;--ac:#00ff41;--on:#001a05;--r:14px;--f:'Inter',system-ui,sans-serif}
+:root{--bg:#050a05;--card:#0f1c0f;--bd:#1a331a;--tx:#e8f4e8;--mu:#8ba88b;--ac:#00ff41;--on:#001a05;--r:14px;--f:system-ui,'Segoe UI',sans-serif;--z:1}
 body[data-t=ventas]{--bg:#0a0e1a;--card:#121826;--bd:#1f2a45;--tx:#e8ecf4;--mu:#8b94ab;--ac:#00d4ff;--on:#00121a}
 body[data-t=contadores]{--bg:#f5f5f7;--card:#fff;--bd:#e5e5ea;--tx:#1d1d1f;--mu:#6e6e73;--ac:#0071e3;--on:#fff;--r:20px;--f:-apple-system,'SF Pro Display',system-ui,sans-serif}
 body[data-t=abogados]{--bg:#0d0d0f;--card:#17171a;--bd:#3a3220;--tx:#f1ebdc;--mu:#a99f86;--ac:#d4af37;--on:#1a1400;--r:4px;--f:Georgia,'Times New Roman',serif}
 body[data-t=geo]{--bg:#06101c;--card:#0b1b2e;--bd:#16406a;--tx:#e6f1fb;--mu:#86a5c4;--ac:#ff8a3d;--on:#1a0a00}
 *{margin:0;padding:0;box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;font-size:calc(16px*var(--z))}
 body{font-family:var(--f);background:var(--bg);color:var(--tx);line-height:1.6;transition:background .4s,color .4s}
 .w{max-width:1100px;margin:0 auto;padding:0 20px}
 a{color:var(--ac);text-decoration:none}
-.top{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
-.top .w{display:flex;align-items:center;justify-content:space-between;gap:10px;padding-top:10px;padding-bottom:10px}
-.brand{font-weight:700;font-size:18px}.brand b{color:var(--ac)}
-.brand small{display:block;font-size:9.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--mu);font-weight:600}
-.btn{display:inline-flex;align-items:center;gap:6px;padding:10px 20px;border-radius:999px;background:var(--ac);color:var(--on);font-weight:700;font-size:14px;border:0;cursor:pointer;font-family:inherit}
-body[data-t=abogados] .btn{border-radius:2px}
+.top{position:sticky;top:0;z-index:9;background:color-mix(in srgb,var(--bg) 90%,transparent);backdrop-filter:blur(16px);border-bottom:1px solid var(--bd)}
+.top .w{display:flex;align-items:center;justify-content:space-between;gap:8px;padding-top:8px;padding-bottom:8px}
+.brand{font-weight:700;font-size:1.1rem;line-height:1.2}.brand b{color:var(--ac)}
+.brand small{display:block;font-size:.6rem;letter-spacing:.08em;text-transform:uppercase;color:var(--mu)}
+.tools{display:flex;gap:6px;align-items:center}
+.sz{width:36px;height:36px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-weight:700;cursor:pointer;font-size:.8rem}
+.btn{display:inline-flex;align-items:center;gap:6px;padding:9px 16px;border-radius:999px;background:var(--ac);color:var(--on);font-weight:700;font-size:.85rem;border:0;cursor:pointer;font-family:inherit}
+body[data-t=abogados] .btn,body[data-t=abogados] .tabs button{border-radius:2px}
 .btn.g{background:transparent;color:var(--tx);border:1px solid var(--bd)}
-.tabs{display:flex;gap:8px;overflow-x:auto;padding:14px 20px;max-width:1100px;margin:0 auto;scrollbar-width:none}
-.tabs button{flex:none;padding:9px 16px;border-radius:999px;border:1px solid var(--bd);background:transparent;color:var(--tx);font-weight:600;font-size:14px;cursor:pointer;font-family:inherit}
-body[data-t=abogados] .tabs button{border-radius:2px}
+.tabs{display:flex;gap:8px;overflow-x:auto;padding:12px 20px;max-width:1100px;margin:0 auto;scrollbar-width:none}
+.tabs button{flex:none;padding:9px 16px;border-radius:999px;border:1px solid var(--bd);background:transparent;color:var(--tx);font-weight:600;font-size:.85rem;cursor:pointer;font-family:inherit}
 .tabs button.on{background:var(--ac);color:var(--on);border-color:var(--ac)}
-.hero{text-align:center;padding:48px 0 28px}
-.hero h1{font-size:clamp(30px,6vw,52px);line-height:1.1;margin-bottom:14px}
-.hero h1 span{color:var(--ac)}
-.hero p{color:var(--mu);max-width:660px;margin:0 auto 22px;font-size:1.05rem}
-.panel{background:var(--card);border:1px solid var(--ac);border-radius:var(--r);padding:20px;margin:0 0 24px}
-.panel h3{margin-bottom:8px}.panel li{margin:6px 0 0 18px;color:var(--mu)}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:16px;padding-bottom:40px}
-.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:10px;transition:transform .25s}
+.hero{text-align:center;padding:40px 0 24px}
+.hero h1{font-size:clamp(1.9rem,6vw,3.2rem);line-height:1.1;margin-bottom:14px}.hero h1 span{color:var(--ac)}
+.hero p{color:var(--mu);max-width:680px;margin:0 auto;font-size:1.05rem}
+.panel{background:var(--card);border:1px solid var(--ac);border-radius:var(--r);padding:20px;margin-bottom:22px}
+.panel li{margin:6px 0 0 18px;color:var(--mu)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:16px;padding-bottom:36px;align-items:start}
+.card{background:var(--card);border:1px solid var(--bd);border-radius:var(--r);padding:22px;display:flex;flex-direction:column;gap:10px}
 body[data-t=contadores] .card{border:0;box-shadow:0 4px 24px rgba(0,0,0,.06)}
-.card:hover{transform:translateY(-3px)}
 .ch{display:flex;gap:12px;align-items:center}
-.ic{font-size:24px;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--ac) 14%,transparent)}
-.card h3{font-size:17px;line-height:1.25}
-.pill{font-size:10.5px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ac)}
-.card p{color:var(--mu);font-size:14px}
-.acts{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap;padding-top:6px}
-.acts .btn{padding:8px 14px;font-size:13px}
-.ct{text-align:center;padding:48px 20px;border:1px solid var(--bd);border-radius:var(--r);background:var(--card);margin-bottom:40px}
-.ct img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--ac);margin-bottom:14px}
+.ic{font-size:1.5rem;width:46px;height:46px;border-radius:12px;display:grid;place-items:center;background:color-mix(in srgb,var(--ac) 14%,transparent)}
+.card h3{font-size:1.1rem;line-height:1.25}
+.pill{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--ac)}
+.card p{color:var(--mu);font-size:.92rem}
+details summary{cursor:pointer;font-weight:700;color:var(--ac);font-size:.9rem;padding:4px 0;list-style:none}
+details summary::before{content:"＋ "}details[open] summary::before{content:"－ "}
+.long{border-top:1px dashed var(--bd);margin-top:8px;padding-top:12px}
+.long p{margin-bottom:10px}
+.long ul{margin:4px 0 12px 18px;color:var(--mu);font-size:.9rem}
+.pl{background:color-mix(in srgb,var(--ac) 8%,transparent);border:1px solid var(--bd);border-radius:12px;padding:10px;display:flex;flex-direction:column;gap:8px}
+.pl .r1{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.pl button{width:38px;height:38px;border-radius:50%;border:1px solid var(--bd);background:var(--card);color:var(--tx);cursor:pointer;font-size:.95rem}
+.pl button.p{background:var(--ac);color:var(--on);border:0}
+.pl .lb{font-size:.78rem;color:var(--mu);margin-left:auto}
+.pl input{width:100%;accent-color:var(--ac)}
+.eq{display:none;gap:2px;align-items:flex-end;height:18px}.pl.on .eq{display:flex}
+.eq i{width:3px;background:var(--ac);animation:e .8s infinite ease-in-out}.eq i:nth-child(2){animation-delay:.2s}.eq i:nth-child(3){animation-delay:.4s}
+@keyframes e{0%,100%{height:4px}50%{height:18px}}
+.acts{display:flex;gap:8px;flex-wrap:wrap;padding-top:4px}
+.acts .btn{padding:8px 14px;font-size:.8rem}
+.ct{text-align:center;padding:44px 20px;border:1px solid var(--bd);border-radius:var(--r);background:var(--card);margin-bottom:36px}
+.ct img{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--ac);margin-bottom:12px}
 .ct .row{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:16px}
-footer{text-align:center;color:var(--mu);font-size:12.5px;padding:24px 20px 40px;border-top:1px solid var(--bd)}
+footer{text-align:center;color:var(--mu);font-size:.8rem;padding:22px 20px 36px;border-top:1px solid var(--bd)}
 </style>
 </head>
 <body data-t="neo">
-
 <div class="top"><div class="w">
   <div class="brand">Stack <b>Labs</b><small>Software que resuelve. Ingeniería que trasciende.</small></div>
-  <a class="btn" id="wa1" target="_blank" rel="noopener">WhatsApp</a>
+  <div class="tools">
+    <button class="sz" onclick="zoom(-.1)" title="Letra más chica">A−</button>
+    <button class="sz" onclick="zoom(.1)" title="Letra más grande">A+</button>
+    <a class="btn" id="wa1" target="_blank" rel="noopener">WhatsApp</a>
+  </div>
 </div></div>
-
 <nav class="tabs" id="tabs"></nav>
-
-<header class="w hero">
-  <h1 id="h1"></h1>
-  <p id="hp"></p>
-</header>
-
+<header class="w hero"><h1 id="h1"></h1><p id="hp"></p></header>
 <main class="w">
   <div id="panel"></div>
   <div class="grid" id="grid"></div>
-
-  <section class="ct" id="contacto">
+  <section class="ct">
     <img src="https://raw.githubusercontent.com/celides/stack_labs-/main/ingjuanstacklabs.jpg" alt="Juan Carlos Pérez Martínez" onerror="this.style.display='none'">
     <h2>Juan Carlos Pérez Martínez</h2>
     <p style="color:var(--mu)">Ingeniero Full Stack · Stack Labs · Querétaro, México</p>
@@ -79,93 +88,135 @@ footer{text-align:center;color:var(--mu);font-size:12.5px;padding:24px 20px 40px
     </div>
   </section>
 </main>
-
 <footer>© 2026 Stack Labs · Desarrollo de software a la medida · Querétaro, México</footer>
 
 <script>
-const WA = "524464044521";
-const wa = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
-const U = {vox:"https://traductorvozotexto-qszn.vercel.app/", dcc:"https://dcc-suite-enterprise-eskn.vercel.app/", sigia:"https://stack-labs-prototiposigia.vercel.app/", shadow:"https://shadow-post-k3ww.vercel.app", lee:"https://whatsapk-uccl.vercel.app/"};
-
-// t = temáticas donde aparece. s: P producción, T prototipo, V validación, S próximamente
-const APPS = [
- {n:"VoxFlow",i:"🎙️",s:"P",t:["neo"],d:"Traductor de voz en tiempo real: alguien habla, tú lo lees y lo escuchas en tu idioma. Sin instalar nada. Nació para que Daniel entendiera sus reuniones.",u:U.vox},
- {n:"DCC Toolbox",i:"⚡",s:"P",t:["neo","contadores","abogados"],d:"Pegas una captura, el OCR llena los datos, calcula y redacta la nota. Todo corre en tu equipo: tus datos no salen a internet. Adaptable a RFC, IVA, expedientes y más.",u:U.dcc},
- {n:"SIGIA",i:"🍽️",s:"T",t:["neo"],d:"Inocuidad alimentaria (SQF) sin carpetas ni Excel: evidencias, informes en Word/PDF y consulta de la norma por voz. Datos solo en tu dispositivo. Es una guía, no sustituye a un auditor.",u:U.sigia},
- {n:"Lee por Ti",i:"📖",s:"P",t:["neo"],d:"Lee en voz alta cualquier texto, dictado o foto (OCR), resaltando cada palabra. 20 temas visuales y voz con IA que corre en tu dispositivo.",u:U.lee},
- {n:"ShadowPost",i:"📡",s:"T",t:["neo","ventas"],d:"Genera 3 variaciones de tu oferta para publicar en grupos, reparte prospectos entre varios WhatsApp y lleva el avance de tu ruta diaria.",u:U.shadow},
- {n:"Oracle B2B Shield",i:"🏢",s:"T",t:["neo","ventas"],d:"Detecta licitaciones y demanda B2B en parques industriales para prospectar con datos, no a ciegas.",u:"https://oracle-b2-b-commercial-shield.vercel.app/"},
- {n:"Ecosistema de Prospección",i:"🎯",s:"T",t:["neo","ventas"],d:"Enriquece leads y automatiza el contacto outbound con IA para bajar el costo por lead.",u:"https://ecosistema-inteligente-de-prospecci.vercel.app/"},
- {n:"Target Zones AI Pro",i:"🗺️",s:"T",t:["neo","ventas"],d:"Mapa interactivo de cobertura y zonas de venta para optimizar territorios y expansión.",u:"https://zeus-auto-post-pro-gemini-core-v1-0.vercel.app/"},
- {n:"Vulcan Neuro Copy",i:"✍️",s:"T",t:["neo","ventas"],d:"Genera copy, propuestas técnicas y contenido comercial con IA.",u:"https://vulcan-neuro-copy-dynamic-engine.vercel.app/"},
- {n:"MindShield AI",i:"🧠",s:"T",t:["neo","ventas"],d:"Evaluación cognitiva y selección de talento técnico con análisis visual por IA.",u:"https://mindshield-ai-talent-cognitive-proj.vercel.app/"},
- {n:"Stark Industries AI",i:"🤖",s:"T",t:["neo"],d:"Asistente de voz manos libres estilo JARVIS para operación en piso. Arquitectura lista; falta conectar la IA.",u:"https://stark-industries-tau.vercel.app"},
- {n:"Analítica Fiscal",i:"📈",s:"S",t:["neo","contadores"],d:"Analiza el histórico de tu cartera y señala qué clientes tienen más probabilidad de una revisión del SAT, para anticiparte con estrategia."},
- {n:"Métrica Fiscal",i:"🧾",s:"S",t:["contadores"],d:"Extrae datos de facturas (XML/PDF), calcula retenciones e IVA y arma el resumen del expediente de cada cliente."},
- {n:"Bunker Legal",i:"⚖️",s:"S",t:["neo","abogados"],d:"IA local para revisar contratos sin enviar tus documentos a la nube. Cada hallazgo enlaza a su fuente para que lo verifiques."},
- {n:"Cronos",i:"⏳",s:"S",t:["neo","abogados"],d:"Lee notificaciones, calcula plazos procesales y deja el borrador del escrito listo para tu revisión y firma."},
- {n:"Mapa Satelital NASA",i:"🛰️",s:"T",t:["neo","geo"],d:"Mapa en vivo con datos públicos de NASA: sismos, incendios, temperatura, calidad del aire y eventos naturales.",u:"https://gemini-perez-investigacion.vercel.app/"},
- {n:"Plataforma de Riesgo Geoespacial",i:"🌍",s:"V",t:["neo","geo"],d:"Tablero corporativo con capas de riesgo, cumplimiento y reportes auditables. Disponible como primer piloto."},
- {n:"IoT y Sensores",i:"🔌",s:"V",t:["neo","geo"],d:"Conecta sensores (temperatura, vibración, aire) al mismo mapa para alertas en tiempo real. Disponible como primer piloto."}
+const WA="524464044521", wa=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+const ST={P:"En producción",T:"Prototipo",V:"En validación",S:"Próximamente"};
+const APPS=[
+{n:"VoxFlow",i:"🎙️",s:"P",t:["neo"],u:"https://traductorvozotexto-qszn.vercel.app/",
+ d:"Traductor de voz en tiempo real: lo lees traducido, lo escuchas con audífonos, o ambos.",
+ l:["Imagina llegar a otro país a trabajar y no entender una sola palabra de lo que dicen a tu alrededor. Daniel llegó de China a México y cada semana se sentaba en una reunión sin poder seguir al maestro.","Ahí nació VoxFlow. Alguien habla, y en segundos lo lees traducido en pantalla, lo escuchas en tu idioma con audífonos, o recibes las dos cosas a la vez. Eliges el idioma de origen y el de destino, y dos motores de inteligencia artificial, Azure y Gemini, buscan la mejor traducción.","No instalas nada ni creas cuentas: abres el navegador en tu celular o computadora. La barrera del idioma no es un destino. Es un problema que ya tiene solución."],
+ b:["Voz a texto traducido en tiempo real","Salida escrita, en audio o las dos a la vez","Manos libres con audífonos","Para viajes, juntas, capacitaciones, eventos y congregaciones","Se adapta a tu marca, tus idiomas y tu tipo de evento"]},
+{n:"DCC Toolbox",i:"⚡",s:"P",t:["neo","contadores","abogados"],u:"https://dcc-suite-enterprise-eskn.vercel.app/",
+ d:"Pega una captura, elige un botón y el documento se arma solo. Todo corre en tu equipo.",
+ l:["Son las ocho de la noche. Llevas tres horas copiando datos de un sistema viejo a un formato. Un error de dedo y todo se cae. El cansancio mental te gana.","Ahora imagina pegar una captura de pantalla. El lector OCR extrae los datos, el sistema autorellena y calcula, y tú eliges un botón con la plantilla que necesitas: escalamiento, nota legal o resumen contable. Tú no escribes: supervisas. En atención a clientes, un caso que tomaba unos tres minutos baja a unos veinte segundos.","Y todo ocurre en tu navegador: tus datos no se suben a ningún servidor. ¿Cuántas horas vas a recuperar cuando dejes de teclear y empieces a validar?"],
+ b:["OCR local de capturas de pantalla","Autollenado y cálculos con un clic","Biblioteca de plantillas listas","Bitácora auditable con datos enmascarados","Se adapta a tu gremio: RFC, IVA, honorarios, expedientes"]},
+{n:"Lee por Ti",i:"📖",s:"P",t:["neo"],u:"https://whatsapk-uccl.vercel.app/",
+ d:"Convierte texto, fotos o dictado en voz alta, resaltando cada palabra.",
+ l:["Estás en el tráfico y no puedes leer ese documento. O tu vista está cansada. O leer párrafos largos te agota por dislexia o TDAH. La tecnología nos dio pantallas, pero nos robó los ojos.","Lee por Ti toma un texto pegado, una foto de un documento o tu dictado, y lo lee en voz alta resaltando cada palabra. Toca cualquier palabra y empieza desde ahí. Elige entre la voz del navegador o Kokoro IA, que corre en tu dispositivo sin enviar datos a la nube.","Es tu asistente de lectura y escritura, adaptado a tu ritmo de vida."],
+ b:["Lectura en voz alta con resaltado palabra por palabra","Escaneo de documentos con OCR en español e inglés","Dictado por voz y texto editable","20 temas visuales y modo pantalla completa","Guarda, busca y descarga tus textos"]},
+{n:"SIGIA",i:"🍽️",s:"T",t:["neo"],u:"https://stack-labs-prototiposigia.vercel.app/",
+ d:"Inocuidad alimentaria sin carpetas ni Excel: evidencias e informes en un solo lugar.",
+ l:["Mañana hay auditoría de inocuidad. Tu escritorio es un mar de carpetas, hojas de Excel y fotos de evidencias que no sabes dónde guardaste. Un documento faltante puede costar caro.","SIGIA reúne todo en un solo lugar. Dictas tus hallazgos, el sistema sugiere los requisitos de la norma que aplican, y descargas el informe en Word o PDF, o lo envías por WhatsApp o correo. También puedes consultar la norma con tu voz.","Es un prototipo en prueba: tus datos se guardan solo en tu dispositivo y las respuestas son una guía que no sustituye a un auditor certificado."],
+ b:["Qué documentos pide cada requisito SQF","Informes profesionales en Word o PDF","Consulta por voz con respuestas habladas","Datos de clientes y documentos dirigidos","Letra grande, modo oscuro, español e inglés"]},
+{n:"ShadowPost",i:"📡",s:"T",t:["neo","ventas"],u:"https://shadow-post-k3ww.vercel.app",
+ d:"Genera 3 variaciones de tu oferta, reparte prospectos entre varios WhatsApp y sigue tu ruta.",
+ l:["Publicas el mismo texto en cincuenta grupos y te reportan por repetido. Pierdes alcance, y a veces la cuenta.","ShadowPost toma tu oferta y genera tres variaciones distintas, con urgencia, escasez y beneficio inmediato, para que no publiques lo mismo cada vez. Alterna los enlaces entre dos o más números de WhatsApp para repartir prospectos entre asesores, y un marcador de progreso te muestra en qué grupos ya publicaste.","Pantalla activa mientras trabajas, acceso protegido y diseño para una sola mano."],
+ b:["3 variaciones automáticas de copy con IA","Enrutamiento a varios WhatsApp","Rutas por zonas y control de progreso","Pantalla siempre activa en celular"]},
+{n:"Oracle B2B Shield",i:"🏢",s:"T",t:["neo","ventas"],u:"https://oracle-b2-b-commercial-shield.vercel.app/",d:"Detecta licitaciones y demanda B2B en parques industriales."},
+{n:"Ecosistema de Prospección",i:"🎯",s:"T",t:["neo","ventas"],u:"https://ecosistema-inteligente-de-prospecci.vercel.app/",d:"Enriquece leads y automatiza el contacto outbound con IA."},
+{n:"Target Zones AI Pro",i:"🗺️",s:"T",t:["neo","ventas"],u:"https://zeus-auto-post-pro-gemini-core-v1-0.vercel.app/",d:"Mapa de cobertura y zonas de venta para optimizar territorios."},
+{n:"Vulcan Neuro Copy",i:"✍️",s:"T",t:["neo","ventas"],u:"https://vulcan-neuro-copy-dynamic-engine.vercel.app/",d:"Genera copy y propuestas comerciales con IA."},
+{n:"MindShield AI",i:"🧠",s:"T",t:["neo","ventas"],u:"https://mindshield-ai-talent-cognitive-proj.vercel.app/",d:"Evaluación cognitiva y selección de talento técnico."},
+{n:"Stark Industries AI",i:"🤖",s:"T",t:["neo"],u:"https://stark-industries-tau.vercel.app",d:"Asistente de voz manos libres para piso de producción. Falta conectar la IA."},
+{n:"Analítica Fiscal",i:"📈",s:"S",t:["neo","contadores"],
+ d:"Ciencia de datos para anticipar qué clientes podrían recibir una revisión del SAT.",
+ l:["El SAT cruza datos y detecta patrones. Tú te enteras de que un cliente tiene un problema cuando ya tiene la carta en la mano.","Analítica Fiscal procesará el histórico de tu cartera con modelos estadísticos para señalar inconsistencias, como una deducción atípica o un CFDI mal cruzado, que la autoridad también podría ver. No predice el futuro: te da probabilidades para priorizar a quién revisar primero.","Tú no reaccionas al susto: te anticipas con estrategia."],
+ b:["Revisión de cartera por nivel de riesgo","Alertas de CFDI y deducciones atípicas","Pensado para correr de forma local"]},
+{n:"Bunker Legal",i:"⚖️",s:"P",t:["neo","abogados"],u:"https://bunkerlegal-tzs7.vercel.app/",
+ d:"Registra a tu cliente una vez y genera 10 tipos de documentos legales con un clic.",
+ l:["Cada minuto llenando un contrato es un minuto que no cobras. Y cada dato que subes a la nube es un riesgo para el secreto profesional.","Bunker Legal resuelve las dos cosas. Registras al cliente una sola vez, persona física, moral o con actividad empresarial, y generas con un clic arrendamientos, pagarés, contratos de servicios, compraventa, NDA, laborales y demandas.","Tus datos no salen de tu dispositivo: cero nube, sin mensualidad. Incluye lectura en voz alta con cuatro velocidades y ajuste de letra. El despacho en tu bolsillo: registra una vez, genera siempre."],
+ b:["Ficha de cliente con RFC, CURP, domicilio y representante legal","10 documentos legales con un clic","100% local, sin nube","Lectura en voz alta y letra ajustable"]},
+{n:"Cronos",i:"⏳",s:"P",t:["neo","abogados"],u:"https://cronos-plazos-procesales.vercel.app/",
+ d:"Calcula plazos procesales y redacta el borrador de tu escrito.",
+ l:["Un día de error en un plazo puede significar perder el derecho. Los plazos no son simples sumas: dependen de la materia y de cómo te notificaron.","Cronos calcula días hábiles saltando fines de semana y festivos, según la materia y el tipo de notificación. Además redacta el borrador del escrito con los datos del expediente, la fecha en que surte efectos y el fundamento procesal.","Guardas tu perfil una vez y cada borrador sale con tu membrete, cédula y contacto. Tú agregas los argumentos de fondo y firmas. Siempre revisa fechas y fundamentos antes de presentar."],
+ b:["Cálculo de plazos por materia y tipo de notificación","Borradores de acuse y contestación","Membrete y cédula del despacho en cada escrito"]},
+{n:"Mapa Satelital NASA",i:"🛰️",s:"T",t:["neo","geo"],u:"https://gemini-perez-investigacion.vercel.app/",
+ d:"Sismos, incendios, clima y eventos naturales en tiempo real con datos públicos de la NASA.",
+ l:["Un sismo detiene una fábrica en Asia. Un huracán cierra un puerto. Un incendio corta una carretera logística. No son solo noticias: son retrasos, pérdidas y movimientos en los mercados.","Esta plataforma se conecta a datos públicos de la NASA, como EONET y Earthdata, y los muestra en un mapa: sismos, incendios activos, temperatura, calidad del aire y eventos naturales. Sirve para ver qué infraestructura y qué cadenas de suministro están en la zona de impacto, y qué materiales y servicios se necesitarán después.","Los datos no cuestan licencia. Quien se anticipa decide mejor; quien reacciona paga la factura."],
+ b:["Eventos naturales en tiempo real","Capas de riesgo sísmico y ambiental","Datos públicos de NASA, sin costo de licencia","Señales para logística, seguros y reconstrucción"]},
+{n:"Plataforma de Riesgo Geoespacial",i:"🌍",s:"V",t:["neo","geo"],d:"Tablero corporativo de riesgo y cumplimiento con reportes auditables. Disponible como primer piloto."},
+{n:"IoT y Sensores",i:"🔌",s:"V",t:["neo","geo"],d:"Sensores de temperatura, vibración y aire conectados al mapa. Disponible como primer piloto."}
 ];
-const ST = {P:"En producción",T:"Prototipo",V:"En validación",S:"Próximamente"};
-
-const TABS = {
- neo:{l:"🟢 Neo",h:'Todo el ecosistema <span>Stack Labs</span>',p:"Automatización, ciencia de datos e IA construidas por un ingeniero full stack. Elige una temática arriba y la página se adapta a tu profesión."},
- ventas:{l:"📈 Ventas B2B",h:'Más pipeline, <span>menos prospección a ciegas</span>',p:"Herramientas para detectar oportunidades, escribir mejor, repartir leads y mapear territorios."},
- contadores:{l:"🔵 Contadores",h:'Menos captura. <span>Más estrategia fiscal.</span>',p:"Automatiza facturas, cálculos y expedientes. Todo corre local: los datos de tus clientes no salen de tu equipo."},
- abogados:{l:"🟡 Abogados",h:'Contratos y plazos <span>bajo control.</span>',p:"IA local y automatización de escritos para que dediques tu tiempo al criterio jurídico, no a la captura."},
- geo:{l:"🛰️ Geoespacial",h:'Entérate antes <span>de que se mueva el mercado.</span>',p:"Datos satelitales de NASA convertidos en señales: dónde tiembla, qué operaciones se detienen y qué se va a necesitar."}
+const TABS={
+ neo:{l:"🟢 Neo",h:'Estás por activar un ecosistema <span>hecho para el futuro</span>',p:"Automatización, inteligencia artificial y privacidad en un solo lugar. El futuro no se espera. Se construye."},
+ ventas:{l:"📈 Ventas B2B",h:'Más pipeline, <span>menos prospección a ciegas</span>',p:"Detecta oportunidades, escribe mejor, reparte leads y mapea territorios."},
+ contadores:{l:"🔵 Contadores",h:'Menos captura. <span>Más estrategia fiscal.</span>',p:"Automatiza cálculos y expedientes. Todo corre local: los datos de tus clientes no salen de tu equipo."},
+ abogados:{l:"🟡 Abogados",h:'Contratos y plazos <span>bajo control.</span>',p:"Documentos en un clic, plazos calculados y confidencialidad en tu propio dispositivo."},
+ geo:{l:"🛰️ Geoespacial",h:'Entérate antes <span>de que se mueva el mercado.</span>',p:"Datos satelitales convertidos en señales: dónde tiembla, qué operaciones se frenan y qué se va a necesitar."}
 };
-const GEO_PANEL = `<div class="panel"><h3>¿Qué puedes anticipar con datos satelitales?</h3><ul>
-<li><b>Terremotos y desastres:</b> ubica dónde ocurren y qué infraestructura y cadenas de suministro quedan en la zona.</li>
-<li><b>Mercados:</b> eventos de gran escala suelen mover bolsas, divisas y materias primas. Te damos la señal temprana; la decisión de inversión es tuya.</li>
-<li><b>Empresas que cierran o frenan:</b> plantas, puertos y rutas afectadas por incendios, inundaciones o sismos.</li>
-<li><b>Reconstrucción:</b> qué materiales y servicios se van a necesitar después (cemento, acero, maquinaria, logística).</li></ul></div>`;
+const GEO=`<div class="panel"><b>¿Qué puedes anticipar con datos satelitales?</b><ul>
+<li><b>Terremotos y desastres:</b> dónde ocurren y qué infraestructura queda en la zona.</li>
+<li><b>Mercados:</b> los eventos grandes suelen mover bolsas, divisas y materias primas. Recibes la señal temprana; la decisión de inversión es tuya.</li>
+<li><b>Empresas que cierran o frenan:</b> plantas, puertos y rutas afectadas.</li>
+<li><b>Reconstrucción:</b> qué materiales y servicios harán falta después.</li></ul></div>`;
 
-let cur = "neo", utter = null;
-const $ = id => document.getElementById(id);
+const $=id=>document.getElementById(id), syn=window.speechSynthesis;
+let cur="neo", z=1, rate=1, S={id:null,q:[],i:0,play:false,tk:0};
 
-function say(btn, text){
-  const s = window.speechSynthesis; if(!s) return;
-  const same = btn.dataset.on === "1";
-  s.cancel(); document.querySelectorAll("[data-on]").forEach(b => {b.dataset.on = "0"; b.textContent = "🔊 Escuchar"});
-  if(same) return;
-  utter = new SpeechSynthesisUtterance(text); utter.lang = "es-MX";
-  utter.onend = () => {btn.dataset.on = "0"; btn.textContent = "🔊 Escuchar"};
-  btn.dataset.on = "1"; btn.textContent = "⏹ Detener"; s.speak(utter);
-}
+function zoom(d){z=Math.min(1.6,Math.max(.8,+(z+d).toFixed(2)));document.documentElement.style.setProperty("--z",z)}
 
-function render(){
-  document.body.dataset.t = cur;
-  const T = TABS[cur];
-  $("h1").innerHTML = T.h; $("hp").textContent = T.p;
-  $("panel").innerHTML = cur === "geo" ? GEO_PANEL : "";
-  document.querySelectorAll("#tabs button").forEach(b => b.classList.toggle("on", b.dataset.k === cur));
-  const list = APPS.filter(a => a.t.includes(cur));
-  $("grid").innerHTML = "";
-  list.forEach(a => {
-    const c = document.createElement("article"); c.className = "card";
-    c.innerHTML = `<div class="ch"><div class="ic">${a.i}</div><div><h3>${a.n}</h3><span class="pill">${ST[a.s]}</span></div></div><p>${a.d}</p><div class="acts"></div>`;
-    const acts = c.querySelector(".acts");
-    if(a.u){ const l = document.createElement("a"); l.className = "btn"; l.href = a.u; l.target = "_blank"; l.rel = "noopener"; l.textContent = "Probar →"; acts.append(l); }
-    const w = document.createElement("a"); w.className = "btn g"; w.target = "_blank"; w.rel = "noopener";
-    w.href = wa(`Hola Juan Carlos, vi ${a.n} en Stack Labs y quiero ${a.u ? "una demo" : "más información"}.`);
-    w.textContent = a.u ? "Pedir demo" : "Me interesa"; acts.append(w);
-    const v = document.createElement("button"); v.className = "btn g"; v.textContent = "🔊 Escuchar"; v.dataset.on = "0";
-    v.onclick = () => say(v, `${a.n}. ${a.d}`); acts.append(v);
-    $("grid").append(c);
+function ui(){
+  document.querySelectorAll(".pl").forEach(p=>{
+    const on=S.play&&p.dataset.id===S.id;
+    p.classList.toggle("on",on);
+    p.querySelector(".p").textContent=on?"⏸":"▶";
   });
-  try{ localStorage.setItem("sl-tab", cur) }catch(e){}
 }
-
-Object.keys(TABS).forEach(k => {
-  const b = document.createElement("button"); b.dataset.k = k; b.textContent = TABS[k].l;
-  b.onclick = () => {window.speechSynthesis && speechSynthesis.cancel(); cur = k; render(); window.scrollTo({top:0,behavior:"smooth"})};
-  $("tabs").append(b);
+function speak(){
+  if(!syn)return; syn.cancel();
+  if(S.i>=S.q.length){S.play=false;S.i=0;ui();return}
+  const tk=++S.tk,u=new SpeechSynthesisUtterance(S.q[S.i]);
+  u.lang="es-MX";u.rate=rate;
+  u.onend=()=>{if(tk===S.tk&&S.play){S.i++;speak()}};
+  syn.speak(u);
+}
+function toggle(id,text){
+  if(S.id===id&&S.play){S.play=false;S.tk++;syn&&syn.cancel();ui();return}
+  if(S.id!==id){S.id=id;S.q=text.split(/(?<=[.!?:])\s+/).filter(Boolean);S.i=0}
+  S.play=true;ui();speak();
+}
+function stop(){S.play=false;S.tk++;S.i=0;syn&&syn.cancel();ui()}
+function setRate(v){
+  rate=+v;document.querySelectorAll(".pl input").forEach(r=>r.value=v);
+  document.querySelectorAll(".pl .lb").forEach(l=>l.textContent=rate.toFixed(1)+"x");
+  if(S.play)speak(); // aplica en tiempo real desde la frase actual
+}
+function player(a){
+  const id=a.n, text=[a.n+".",a.d,...a.l,"Beneficios.",...a.b.map(x=>x+".")].join(" ");
+  const d=document.createElement("div");d.className="pl";d.dataset.id=id;
+  d.innerHTML=`<div class="r1"><button class="p" title="Reproducir o pausar">▶</button><button class="s" title="Detener">⏹</button><span class="eq"><i></i><i></i><i></i></span><span class="lb">${rate.toFixed(1)}x</span></div><input type="range" min="0.6" max="2" step="0.1" value="${rate}" aria-label="Velocidad">`;
+  d.querySelector(".p").onclick=()=>toggle(id,text);
+  d.querySelector(".s").onclick=stop;
+  d.querySelector("input").oninput=e=>setRate(e.target.value);
+  return d;
+}
+function render(){
+  stop();document.body.dataset.t=cur;
+  const T=TABS[cur];$("h1").innerHTML=T.h;$("hp").textContent=T.p;
+  $("panel").innerHTML=cur==="geo"?GEO:"";
+  document.querySelectorAll("#tabs button").forEach(b=>b.classList.toggle("on",b.dataset.k===cur));
+  $("grid").innerHTML="";
+  APPS.filter(a=>a.t.includes(cur)).forEach(a=>{
+    const c=document.createElement("article");c.className="card";
+    c.innerHTML=`<div class="ch"><div class="ic">${a.i}</div><div><h3>${a.n}</h3><span class="pill">${ST[a.s]}</span></div></div><p>${a.d}</p>`;
+    if(a.l){
+      const dt=document.createElement("details");
+      dt.innerHTML=`<summary>Saber más</summary><div class="long">${a.l.map(p=>`<p>${p}</p>`).join("")}<b>Qué hace y qué obtienes</b><ul>${a.b.map(x=>`<li>${x}</li>`).join("")}</ul></div>`;
+      dt.querySelector(".long").append(player(a));c.append(dt);
+    }
+    const acts=document.createElement("div");acts.className="acts";
+    if(a.u)acts.innerHTML=`<a class="btn" href="${a.u}" target="_blank" rel="noopener">Probar →</a>`;
+    acts.innerHTML+=`<a class="btn g" href="${wa(`Hola Juan Carlos, vi ${a.n} en Stack Labs y quiero ${a.u?"una demo":"más información"}.`)}" target="_blank" rel="noopener">${a.u?"Pedir demo":"Me interesa"}</a>`;
+    c.append(acts);$("grid").append(c);
+  });
+}
+Object.keys(TABS).forEach(k=>{
+  const b=document.createElement("button");b.dataset.k=k;b.textContent=TABS[k].l;
+  b.onclick=()=>{cur=k;render();scrollTo({top:0,behavior:"smooth"})};$("tabs").append(b);
 });
-$("wa1").href = $("wa2").href = wa("Hola Juan Carlos, vi Stack Labs y quiero conversar.");
-try{ const s = localStorage.getItem("sl-tab"); if(s && TABS[s]) cur = s }catch(e){}
+$("wa1").href=$("wa2").href=wa("Hola Juan Carlos, vi Stack Labs y quiero conversar.");
 render();
 </script>
 </body>
