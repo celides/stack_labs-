@@ -10,6 +10,7 @@
 body[data-t=ventas]{--bg:#0a0e1a;--card:#121826;--bd:#1f2a45;--tx:#e8ecf4;--mu:#8b94ab;--ac:#00d4ff;--on:#00121a}
 body[data-t=contadores]{--bg:#f5f5f7;--card:#fff;--bd:#e5e5ea;--tx:#1d1d1f;--mu:#6e6e73;--ac:#0071e3;--on:#fff;--r:20px;--f:-apple-system,'SF Pro Display',system-ui,sans-serif}
 body[data-t=abogados]{--bg:#0d0d0f;--card:#17171a;--bd:#3a3220;--tx:#f1ebdc;--mu:#a99f86;--ac:#d4af37;--on:#1a1400;--r:4px;--f:Georgia,'Times New Roman',serif}
+body[data-t=callcenter]{--bg:#0c0a1f;--card:#15122e;--bd:#2a2554;--tx:#ece9ff;--mu:#9a95c9;--ac:#a78bfa;--on:#12082e}
 body[data-t=geo]{--bg:#06101c;--card:#0b1b2e;--bd:#16406a;--tx:#e6f1fb;--mu:#86a5c4;--ac:#ff8a3d;--on:#1a0a00}
 *{margin:0;padding:0;box-sizing:border-box}
 html{scroll-behavior:smooth;font-size:calc(16px*var(--z))}
@@ -98,10 +99,10 @@ const APPS=[
  d:"Traductor de voz en tiempo real: lo lees traducido, lo escuchas con audífonos, o ambos.",
  l:["Imagina llegar a otro país a trabajar y no entender una sola palabra de lo que dicen a tu alrededor. Daniel llegó de China a México y cada semana se sentaba en una reunión sin poder seguir al maestro.","Ahí nació VoxFlow. Alguien habla, y en segundos lo lees traducido en pantalla, lo escuchas en tu idioma con audífonos, o recibes las dos cosas a la vez. Eliges el idioma de origen y el de destino, y dos motores de inteligencia artificial, Azure y Gemini, buscan la mejor traducción.","No instalas nada ni creas cuentas: abres el navegador en tu celular o computadora. La barrera del idioma no es un destino. Es un problema que ya tiene solución."],
  b:["Voz a texto traducido en tiempo real","Salida escrita, en audio o las dos a la vez","Manos libres con audífonos","Para viajes, juntas, capacitaciones, eventos y congregaciones","Se adapta a tu marca, tus idiomas y tu tipo de evento"]},
-{n:"DCC Toolbox",i:"⚡",s:"P",t:["neo","contadores","abogados"],u:"https://dcc-suite-enterprise-eskn.vercel.app/",
- d:"Pega una captura, elige un botón y el documento se arma solo. Todo corre en tu equipo.",
- l:["Son las ocho de la noche. Llevas tres horas copiando datos de un sistema viejo a un formato. Un error de dedo y todo se cae. El cansancio mental te gana.","Ahora imagina pegar una captura de pantalla. El lector OCR extrae los datos, el sistema autorellena y calcula, y tú eliges un botón con la plantilla que necesitas: escalamiento, nota legal o resumen contable. Tú no escribes: supervisas. En atención a clientes, un caso que tomaba unos tres minutos baja a unos veinte segundos.","Y todo ocurre en tu navegador: tus datos no se suben a ningún servidor. ¿Cuántas horas vas a recuperar cuando dejes de teclear y empieces a validar?"],
- b:["OCR local de capturas de pantalla","Autollenado y cálculos con un clic","Biblioteca de plantillas listas","Bitácora auditable con datos enmascarados","Se adapta a tu gremio: RFC, IVA, honorarios, expedientes"]},
+{n:"DCC Toolbox",i:"⚡",s:"P",t:["neo","callcenter"],u:"https://dcc-suite-enterprise-eskn.vercel.app/",
+ d:"Pega una captura, elige un botón y el caso se documenta solo. Todo corre en tu equipo.",
+ l:["Tienes un cliente en la línea y otro esperando. En pantalla, un sistema viejo donde copiar localizador, nombre, correo y teléfono. Un error de dedo y el caso se cae. La fila no se acorta sola.","Ahora imagina pegar una captura de pantalla. El lector OCR extrae los datos, el sistema autorellena y calcula la compensación o el voucher, y tú eliges un botón con la plantilla que necesitas: escalamiento o comentario del caso. Tú no escribes: supervisas. En atención a clientes, un caso que tomaba unos tres minutos baja a unos veinte segundos.","Y todo ocurre en tu navegador: los datos de tus clientes no se suben a ningún servidor. ¿Cuánto bajaría tu tiempo promedio de atención?"],
+ b:["OCR local de capturas de sistemas legados","Autollenado de los datos del cliente","Cálculos automáticos de compensaciones y vouchers","Plantillas de escalamiento y comentarios del caso","Directorio de extensiones","Bitácora de turno con datos enmascarados"]},
 {n:"Lee por Ti",i:"📖",s:"P",t:["neo"],u:"https://whatsapk-uccl.vercel.app/",
  d:"Convierte texto, fotos o dictado en voz alta, resaltando cada palabra.",
  l:["Estás en el tráfico y no puedes leer ese documento. O tu vista está cansada. O leer párrafos largos te agota por dislexia o TDAH. La tecnología nos dio pantallas, pero nos robó los ojos.","Lee por Ti toma un texto pegado, una foto de un documento o tu dictado, y lo lee en voz alta resaltando cada palabra. Toca cualquier palabra y empieza desde ahí. Elige entre la voz del navegador o Kokoro IA, que corre en tu dispositivo sin enviar datos a la nube.","Es tu asistente de lectura y escritura, adaptado a tu ritmo de vida."],
@@ -144,6 +145,7 @@ const TABS={
  ventas:{l:"📈 Ventas B2B",h:'Más pipeline, <span>menos prospección a ciegas</span>',p:"Detecta oportunidades, escribe mejor, reparte leads y mapea territorios."},
  contadores:{l:"🔵 Contadores",h:'Menos captura. <span>Más estrategia fiscal.</span>',p:"Automatiza cálculos y expedientes. Todo corre local: los datos de tus clientes no salen de tu equipo."},
  abogados:{l:"🟡 Abogados",h:'Contratos y plazos <span>bajo control.</span>',p:"Documentos en un clic, plazos calculados y confidencialidad en tu propio dispositivo."},
+ callcenter:{l:"🎧 Call Centers",h:'Cada llamada, <span>más rápida y sin errores.</span>',p:"Captura una vez, calcula con un clic y documenta en segundos. Todo corre en tu equipo."},
  geo:{l:"🛰️ Geoespacial",h:'Entérate antes <span>de que se mueva el mercado.</span>',p:"Datos satelitales convertidos en señales: dónde tiembla, qué operaciones se frenan y qué se va a necesitar."}
 };
 const GEO=`<div class="panel"><b>¿Qué puedes anticipar con datos satelitales?</b><ul>
